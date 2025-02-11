@@ -1,0 +1,72 @@
+[2025-02-11T09:57:14.063+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-11T09:57:14.219+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.import_temp_ecc_to_ecc scheduled__2025-02-11T09:56:00+00:00 [queued]>
+[2025-02-11T09:57:14.237+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.import_temp_ecc_to_ecc scheduled__2025-02-11T09:56:00+00:00 [queued]>
+[2025-02-11T09:57:14.238+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2025-02-11T09:57:14.263+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): import_temp_ecc_to_ecc> on 2025-02-11 09:56:00+00:00
+[2025-02-11T09:57:14.271+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=6551) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-11T09:57:14.273+0000] {standard_task_runner.py:72} INFO - Started process 6553 to run task
+[2025-02-11T09:57:14.273+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag', 'import_temp_ecc_to_ecc', 'scheduled__2025-02-11T09:56:00+00:00', '--job-id', '2119', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmp5ah2hn00']
+[2025-02-11T09:57:14.275+0000] {standard_task_runner.py:105} INFO - Job 2119: Subtask import_temp_ecc_to_ecc
+[2025-02-11T09:57:14.336+0000] {task_command.py:467} INFO - Running <TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.import_temp_ecc_to_ecc scheduled__2025-02-11T09:56:00+00:00 [running]> on host b6443be51f35
+[2025-02-11T09:57:14.431+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag' AIRFLOW_CTX_TASK_ID='import_temp_ecc_to_ecc' AIRFLOW_CTX_EXECUTION_DATE='2025-02-11T09:56:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-11T09:56:00+00:00'
+[2025-02-11T09:57:14.433+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-11T09:57:14.433+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-11T09:57:14.434+0000] {logging_mixin.py:190} INFO - Current task name:import_temp_ecc_to_ecc state:running start_date:2025-02-11 09:57:14.221049+00:00
+[2025-02-11T09:57:14.434+0000] {logging_mixin.py:190} INFO - Dag name:IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag and current dag run status:running
+[2025-02-11T09:57:14.435+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-11T09:57:14.435+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-11T09:57:14.439+0000] {logging_mixin.py:190} INFO - toto  SELECT * FROM {TABLE_TEMP_ECC}; 
+[2025-02-11T09:57:14.449+0000] {base.py:84} INFO - Retrieving connection 'mysql_conn'
+[2025-02-11T09:57:14.461+0000] {sql.py:553} INFO - Running statement:  SELECT * FROM {TABLE_TEMP_ECC}; , parameters: None
+[2025-02-11T09:57:14.462+0000] {logging_mixin.py:190} INFO - ❌ Erreur  lors de l'importation des données Temp_to_ECC : (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '}' at line 1")
+[2025-02-11T09:57:14.463+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-02-11T09:57:14.463+0000] {branch.py:38} INFO - Branch into None
+[2025-02-11T09:57:14.464+0000] {skipmixin.py:230} INFO - Following branch ()
+[2025-02-11T09:57:14.472+0000] {skipmixin.py:278} INFO - Skipping tasks [('end', -1)]
+[2025-02-11T09:57:14.491+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-11T09:57:14.492+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag, task_id=import_temp_ecc_to_ecc, run_id=scheduled__2025-02-11T09:56:00+00:00, execution_date=20250211T095600, start_date=20250211T095714, end_date=20250211T095714
+[2025-02-11T09:57:14.503+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-02-11T09:57:14.504+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-02-11T09:57:14.505+0000] {logging_mixin.py:190} INFO - Dag name:IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag queued_at:2025-02-11 09:57:00.512810+00:00
+[2025-02-11T09:57:14.505+0000] {logging_mixin.py:190} INFO - Task hostname:b6443be51f35 operator:BranchPythonOperator
+[2025-02-11T09:57:14.529+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-02-11T09:57:14.546+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-11T09:57:14.549+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-02-11T09:58:15.607+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-11T09:58:15.886+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.import_temp_ecc_to_ecc scheduled__2025-02-11T09:56:00+00:00 [queued]>
+[2025-02-11T09:58:15.903+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.import_temp_ecc_to_ecc scheduled__2025-02-11T09:56:00+00:00 [queued]>
+[2025-02-11T09:58:15.905+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2025-02-11T09:58:15.933+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): import_temp_ecc_to_ecc> on 2025-02-11 09:56:00+00:00
+[2025-02-11T09:58:15.944+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=6602) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-11T09:58:15.946+0000] {standard_task_runner.py:72} INFO - Started process 6611 to run task
+[2025-02-11T09:58:15.947+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag', 'import_temp_ecc_to_ecc', 'scheduled__2025-02-11T09:56:00+00:00', '--job-id', '2130', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmppx2zipr1']
+[2025-02-11T09:58:15.949+0000] {standard_task_runner.py:105} INFO - Job 2130: Subtask import_temp_ecc_to_ecc
+[2025-02-11T09:58:16.031+0000] {task_command.py:467} INFO - Running <TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.import_temp_ecc_to_ecc scheduled__2025-02-11T09:56:00+00:00 [running]> on host b6443be51f35
+[2025-02-11T09:58:16.177+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag' AIRFLOW_CTX_TASK_ID='import_temp_ecc_to_ecc' AIRFLOW_CTX_EXECUTION_DATE='2025-02-11T09:56:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-11T09:56:00+00:00'
+[2025-02-11T09:58:16.181+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-11T09:58:16.182+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-11T09:58:16.182+0000] {logging_mixin.py:190} INFO - Current task name:import_temp_ecc_to_ecc state:running start_date:2025-02-11 09:58:15.887727+00:00
+[2025-02-11T09:58:16.183+0000] {logging_mixin.py:190} INFO - Dag name:IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag and current dag run status:running
+[2025-02-11T09:58:16.184+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-11T09:58:16.185+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-11T09:58:16.190+0000] {logging_mixin.py:190} INFO - toto  SELECT * FROM {TABLE_TEMP_ECC}; 
+[2025-02-11T09:58:16.207+0000] {base.py:84} INFO - Retrieving connection 'mysql_conn'
+[2025-02-11T09:58:16.229+0000] {sql.py:553} INFO - Running statement:  SELECT * FROM {TABLE_TEMP_ECC}; , parameters: None
+[2025-02-11T09:58:16.231+0000] {logging_mixin.py:190} INFO - ❌ Erreur  lors de l'importation des données Temp_to_ECC : (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '}' at line 1")
+[2025-02-11T09:58:16.233+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-02-11T09:58:16.235+0000] {branch.py:38} INFO - Branch into None
+[2025-02-11T09:58:16.236+0000] {skipmixin.py:230} INFO - Following branch ()
+[2025-02-11T09:58:16.255+0000] {skipmixin.py:278} INFO - Skipping tasks [('end', -1)]
+[2025-02-11T09:58:16.291+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-11T09:58:16.292+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag, task_id=import_temp_ecc_to_ecc, run_id=scheduled__2025-02-11T09:56:00+00:00, execution_date=20250211T095600, start_date=20250211T095815, end_date=20250211T095816
+[2025-02-11T09:58:16.306+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-02-11T09:58:16.307+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-02-11T09:58:16.308+0000] {logging_mixin.py:190} INFO - Dag name:IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag queued_at:2025-02-11 09:57:58.252852+00:00
+[2025-02-11T09:58:16.309+0000] {logging_mixin.py:190} INFO - Task hostname:b6443be51f35 operator:BranchPythonOperator
+[2025-02-11T09:58:16.363+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-02-11T09:58:16.401+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-11T09:58:16.405+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

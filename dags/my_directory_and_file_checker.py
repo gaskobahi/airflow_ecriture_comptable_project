@@ -59,6 +59,9 @@ RENAMED_COLUMNS={
 
 }
 
+MYSQL_CONNEXION='mysql_conn'
+TABLE_TEMP_ECC="temp_ecc"
+TABLE_ECC="ecc"
 # Définition des variables
 #DIRECTORY_PATH = "/opt/airflow/dags/shares"  # Remplacez par votre chemin
 DIRECTORY_PATH = "/opt/airflow/files"  # Remplacez par votre chemin
@@ -76,15 +79,13 @@ OUT_DIR="out"
 os.makedirs(DIRECTORY_PATH, exist_ok=True)
 
 
-from airflow.providers.mysql.hooks.mysql import MySqlHook
-
-
 def import_temp_ecc_to_ecc():
+    log_message(LOG_DIR,SUCCESS_FILENAME, 'suc_message')
+
     try:
         # Initialiser le hook MySQL
-        mysql_hook = MySqlHook(mysql_conn_id='mysql_conn')
-        select_query = """ SELECT * FROM temp_ecc; """
-
+        mysql_hook = MySqlHook(mysql_conn_id=MYSQL_CONNEXION)
+        select_query = f" SELECT * FROM {TABLE_TEMP_ECC};"
         records = mysql_hook.get_records(select_query)
           # Préparer les données pour l'insertion ou la mise à jour
         data_to_insert = [
@@ -100,23 +101,33 @@ def import_temp_ecc_to_ecc():
             )
             for record in records
         ]
+        print ("toto1",data_to_insert)
 
 
-        delete_query = """
-            DELETE FROM ecc WHERE id IN (%s)
-        """ % ", ".join(["%s"] * len(data_to_insert))
+        delete_query = f" DELETE FROM {TABLE_ECC} WHERE id IN (%s) " % ", ".join(["%s"] * len(data_to_insert))
 
         mysql_hook.run(delete_query, parameters=[row[0] for row in data_to_insert])  # Supprime les anciens enregistrements
-
+        print("data_to_insert",data_to_insert)
         # Insère les nouvelles données
         mysql_hook.insert_rows(
-            table="ecc",
+            table=TABLE_ECC,
             rows=data_to_insert,
-            target_fields=["id", "accounting_date", "lot_number", "type_ecriture", "document_number", "sequence_number"]
+            #target_fields=["id", "accounting_date", "lot_number", "type_ecriture", "document_number", "sequence_number"]
+            target_fields=["id",
+                EXPECTED_COLUMNS[0],EXPECTED_COLUMNS[1], EXPECTED_COLUMNS[2],
+                EXPECTED_COLUMNS[3],EXPECTED_COLUMNS[4], EXPECTED_COLUMNS[5],
+                EXPECTED_COLUMNS[6],EXPECTED_COLUMNS[7],EXPECTED_COLUMNS[8],
+                EXPECTED_COLUMNS[9],EXPECTED_COLUMNS[10],EXPECTED_COLUMNS[11],
+                EXPECTED_COLUMNS[12],EXPECTED_COLUMNS[13],EXPECTED_COLUMNS[14],
+                EXPECTED_COLUMNS[15],EXPECTED_COLUMNS[16],EXPECTED_COLUMNS[17],
+                EXPECTED_COLUMNS[18],EXPECTED_COLUMNS[19],EXPECTED_COLUMNS[20],
+                EXPECTED_COLUMNS[21],EXPECTED_COLUMNS[22],EXPECTED_COLUMNS[23],
+                EXPECTED_COLUMNS[24],EXPECTED_COLUMNS[25],EXPECTED_COLUMNS[26],
+            ]
         )
         return 'end'
     except Exception as e:
-        print(f"❌ Erreur lors de l'importation des données : {e}")
+        print(f"❌ Erreur  lors de l'importation des données Temp_to_ECC : {e}")
         
 
 
@@ -227,10 +238,9 @@ def read_file(file,file_path,encodings,expected_columns,renamed_columns)->pd:
 # Paramètres de connexion MySQL (à adapter)
 
 def test_sql_connection(pdfile,temp_table)->any:
-    TABLE=temp_table
     """Teste la connexion à la base de données."""
     try:
-        mysql_hook = MySqlHook(mysql_conn_id='mysql_conn')
+        mysql_hook = MySqlHook(mysql_conn_id=MYSQL_CONNEXION)
         conn = mysql_hook.get_conn()
         cursor = conn.cursor()
 
@@ -246,6 +256,7 @@ def test_sql_connection(pdfile,temp_table)->any:
             pdfile["created_at"] = pd.to_datetime(pdfile["created_at"], format="%d/%m/%Y %H:%M").dt.strftime("%Y-%m-%d %H:%M")
 
         # Vérification et conversion de quantity
+        """
         if "quantity" in pdfile.columns:
             pdfile["quantity"] = pdfile["quantity"].astype(str).str.replace(",", ".").astype(float)
 
@@ -272,7 +283,7 @@ def test_sql_connection(pdfile,temp_table)->any:
 
         if "kor_input" in pdfile.columns:
             pdfile["kor_input"] = pdfile["kor_input"].astype(str).str.replace(",", ".").astype(float)
-
+        """
         # Remplacement des NaN par ''
         pdfile = pdfile.where(pdfile.notna(), '')
 
@@ -280,7 +291,7 @@ def test_sql_connection(pdfile,temp_table)->any:
         print("Aperçu des données :", pdfile.head())
 
         # Suppression des anciennes données
-        delete_query = f"DELETE FROM {TABLE};"
+        delete_query = f"DELETE FROM {temp_table};"
         cursor.execute(delete_query)
         conn.commit()
         print("⚠️ Données supprimées avant insertion.")
@@ -290,8 +301,11 @@ def test_sql_connection(pdfile,temp_table)->any:
         #print('📌 Données à insérer :', rows_to_insert)
 
         # Insertion des données
-        mysql_hook.insert_rows(table=TABLE, rows=rows_to_insert)
-        print("✅ Insertion réussie !")
+        mysql_hook.insert_rows(table=temp_table, rows=rows_to_insert)
+        msg="✅ Insertion réussie ecc !"
+        print(msg)
+        log_message(LOG_DIR, ERROR_FILENAME, msg)
+        return msg
 
     except Exception as e:
         error_msg = f"❌ Erreur de connexion : {e}"
@@ -391,17 +405,17 @@ def verify_file_reliability(directory_path,allow_types,encodings,expected_column
             # ✅ Remplacer `NaN` par `None`
             if check_file_reliability_from_pandas(pdFile,expected_columns,column_types):
                 print('merci')
-                cursor=test_sql_connection(pdFile,"temp_ecc")
+                cursor=test_sql_connection(pdFile,TABLE_TEMP_ECC)
                 if not cursor:
                     error_msg='connexion sql echoue'
                     print(error_msg)
                     destination_out_path=f"{DIRECTORY_PATH}/{OUT_DIR}"
                     log_message(LOG_DIR,ERROR_FILENAME,error_msg)
-                    move_file_to_out(file_path,destination_out_path,False)
+                    #move_file_to_out(file_path,destination_out_path,False)
                 else:
-                    destination_out_path=f"{DIRECTORY_PATH}/{OUT_DIR}"
+                    #destination_out_path=f"{DIRECTORY_PATH}/{OUT_DIR}"
                     print('connexion sql reussie',cursor)
-                    move_file_to_out(file_path,destination_out_path)
+                    #move_file_to_out(file_path,destination_out_path)
                     return 'import_temp_ecc_to_ecc'
             else:
                 print('Merde')
