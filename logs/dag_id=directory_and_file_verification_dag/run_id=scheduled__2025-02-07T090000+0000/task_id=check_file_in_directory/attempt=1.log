@@ -1,0 +1,93 @@
+[2025-02-07T22:42:30.667+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-07T22:42:32.181+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.check_file_in_directory scheduled__2025-02-07T09:00:00+00:00 [queued]>
+[2025-02-07T22:42:32.437+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.check_file_in_directory scheduled__2025-02-07T09:00:00+00:00 [queued]>
+[2025-02-07T22:42:32.439+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-02-07T22:42:32.601+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): check_file_in_directory> on 2025-02-07 09:00:00+00:00
+[2025-02-07T22:42:32.641+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=20076) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-07T22:42:32.653+0000] {standard_task_runner.py:72} INFO - Started process 20125 to run task
+[2025-02-07T22:42:32.681+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'directory_and_file_verification_dag', 'check_file_in_directory', 'scheduled__2025-02-07T09:00:00+00:00', '--job-id', '1064', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmp1hjow3hv']
+[2025-02-07T22:42:32.695+0000] {standard_task_runner.py:105} INFO - Job 1064: Subtask check_file_in_directory
+[2025-02-07T22:42:33.037+0000] {task_command.py:467} INFO - Running <TaskInstance: directory_and_file_verification_dag.check_file_in_directory scheduled__2025-02-07T09:00:00+00:00 [running]> on host 003b7fbea265
+[2025-02-07T22:42:33.417+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='directory_and_file_verification_dag' AIRFLOW_CTX_TASK_ID='check_file_in_directory' AIRFLOW_CTX_EXECUTION_DATE='2025-02-07T09:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-07T09:00:00+00:00'
+[2025-02-07T22:42:33.438+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-07T22:42:33.439+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-07T22:42:33.440+0000] {logging_mixin.py:190} INFO - Current task name:check_file_in_directory state:running start_date:2025-02-07 22:42:32.192334+00:00
+[2025-02-07T22:42:33.441+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag and current dag run status:running
+[2025-02-07T22:42:33.441+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-07T22:42:33.442+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-07T22:42:33.459+0000] {python.py:240} INFO - Done. Returned value was: end
+[2025-02-07T22:42:33.460+0000] {branch.py:38} INFO - Branch into end
+[2025-02-07T22:42:33.463+0000] {skipmixin.py:230} INFO - Following branch ('end',)
+[2025-02-07T22:42:33.533+0000] {skipmixin.py:278} INFO - Skipping tasks [('verify_file_reliability', -1)]
+[2025-02-07T22:42:33.816+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-07T22:42:33.824+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=directory_and_file_verification_dag, task_id=check_file_in_directory, run_id=scheduled__2025-02-07T09:00:00+00:00, execution_date=20250207T090000, start_date=20250207T224232, end_date=20250207T224233
+[2025-02-07T22:42:33.889+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-02-07T22:42:33.920+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-02-07T22:42:33.920+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag queued_at:2025-02-07 22:41:57.579181+00:00
+[2025-02-07T22:42:33.927+0000] {logging_mixin.py:190} INFO - Task hostname:003b7fbea265 operator:BranchPythonOperator
+[2025-02-07T22:42:34.047+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-02-07T22:42:34.104+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-02-07T22:43:59.693+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-07T22:44:00.127+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.check_file_in_directory scheduled__2025-02-07T09:00:00+00:00 [queued]>
+[2025-02-07T22:44:00.148+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.check_file_in_directory scheduled__2025-02-07T09:00:00+00:00 [queued]>
+[2025-02-07T22:44:00.150+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-02-07T22:44:00.185+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): check_file_in_directory> on 2025-02-07 09:00:00+00:00
+[2025-02-07T22:44:00.207+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=20296) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-07T22:44:00.210+0000] {standard_task_runner.py:72} INFO - Started process 20333 to run task
+[2025-02-07T22:44:00.220+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'directory_and_file_verification_dag', 'check_file_in_directory', 'scheduled__2025-02-07T09:00:00+00:00', '--job-id', '1116', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmp0olxam4r']
+[2025-02-07T22:44:00.227+0000] {standard_task_runner.py:105} INFO - Job 1116: Subtask check_file_in_directory
+[2025-02-07T22:44:00.355+0000] {task_command.py:467} INFO - Running <TaskInstance: directory_and_file_verification_dag.check_file_in_directory scheduled__2025-02-07T09:00:00+00:00 [running]> on host 003b7fbea265
+[2025-02-07T22:44:00.648+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='directory_and_file_verification_dag' AIRFLOW_CTX_TASK_ID='check_file_in_directory' AIRFLOW_CTX_EXECUTION_DATE='2025-02-07T09:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-07T09:00:00+00:00'
+[2025-02-07T22:44:00.652+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-07T22:44:00.653+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-07T22:44:00.654+0000] {logging_mixin.py:190} INFO - Current task name:check_file_in_directory state:running start_date:2025-02-07 22:44:00.128167+00:00
+[2025-02-07T22:44:00.654+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag and current dag run status:running
+[2025-02-07T22:44:00.656+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-07T22:44:00.657+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-07T22:44:00.663+0000] {python.py:240} INFO - Done. Returned value was: end
+[2025-02-07T22:44:00.664+0000] {branch.py:38} INFO - Branch into end
+[2025-02-07T22:44:00.665+0000] {skipmixin.py:230} INFO - Following branch ('end',)
+[2025-02-07T22:44:00.686+0000] {skipmixin.py:278} INFO - Skipping tasks [('verify_file_reliability', -1)]
+[2025-02-07T22:44:00.762+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-07T22:44:00.781+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=directory_and_file_verification_dag, task_id=check_file_in_directory, run_id=scheduled__2025-02-07T09:00:00+00:00, execution_date=20250207T090000, start_date=20250207T224400, end_date=20250207T224400
+[2025-02-07T22:44:00.805+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-02-07T22:44:00.806+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-02-07T22:44:00.806+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag queued_at:2025-02-07 22:43:28.666444+00:00
+[2025-02-07T22:44:00.807+0000] {logging_mixin.py:190} INFO - Task hostname:003b7fbea265 operator:BranchPythonOperator
+[2025-02-07T22:44:00.860+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-02-07T22:44:00.886+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-02-07T23:11:55.949+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-07T23:11:56.544+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.check_file_in_directory scheduled__2025-02-07T09:00:00+00:00 [queued]>
+[2025-02-07T23:11:56.633+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.check_file_in_directory scheduled__2025-02-07T09:00:00+00:00 [queued]>
+[2025-02-07T23:11:56.638+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-02-07T23:11:56.739+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): check_file_in_directory> on 2025-02-07 09:00:00+00:00
+[2025-02-07T23:11:56.770+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=20831) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-07T23:11:56.784+0000] {standard_task_runner.py:72} INFO - Started process 20868 to run task
+[2025-02-07T23:11:56.774+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'directory_and_file_verification_dag', 'check_file_in_directory', 'scheduled__2025-02-07T09:00:00+00:00', '--job-id', '1158', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmp7fa58hym']
+[2025-02-07T23:11:56.807+0000] {standard_task_runner.py:105} INFO - Job 1158: Subtask check_file_in_directory
+[2025-02-07T23:11:57.039+0000] {task_command.py:467} INFO - Running <TaskInstance: directory_and_file_verification_dag.check_file_in_directory scheduled__2025-02-07T09:00:00+00:00 [running]> on host 003b7fbea265
+[2025-02-07T23:11:57.538+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='directory_and_file_verification_dag' AIRFLOW_CTX_TASK_ID='check_file_in_directory' AIRFLOW_CTX_EXECUTION_DATE='2025-02-07T09:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-07T09:00:00+00:00'
+[2025-02-07T23:11:57.543+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-07T23:11:57.545+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-07T23:11:57.551+0000] {logging_mixin.py:190} INFO - Current task name:check_file_in_directory state:running start_date:2025-02-07 23:11:56.546330+00:00
+[2025-02-07T23:11:57.552+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag and current dag run status:running
+[2025-02-07T23:11:57.554+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-07T23:11:57.555+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-07T23:11:57.562+0000] {python.py:240} INFO - Done. Returned value was: end
+[2025-02-07T23:11:57.565+0000] {branch.py:38} INFO - Branch into end
+[2025-02-07T23:11:57.567+0000] {skipmixin.py:230} INFO - Following branch ('end',)
+[2025-02-07T23:11:57.657+0000] {skipmixin.py:278} INFO - Skipping tasks [('verify_file_reliability', -1)]
+[2025-02-07T23:11:57.840+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-07T23:11:57.841+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=directory_and_file_verification_dag, task_id=check_file_in_directory, run_id=scheduled__2025-02-07T09:00:00+00:00, execution_date=20250207T090000, start_date=20250207T231156, end_date=20250207T231157
+[2025-02-07T23:11:57.907+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-02-07T23:11:57.913+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-02-07T23:11:57.918+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag queued_at:2025-02-07 23:11:22.633446+00:00
+[2025-02-07T23:11:57.923+0000] {logging_mixin.py:190} INFO - Task hostname:003b7fbea265 operator:BranchPythonOperator
+[2025-02-07T23:11:58.078+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-02-07T23:11:58.132+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

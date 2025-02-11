@@ -1,0 +1,142 @@
+[2025-02-02T16:36:13.203+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-02T16:36:13.220+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.verify_file_reliability manual__2025-02-02T16:36:06.849533+00:00 [queued]>
+[2025-02-02T16:36:13.227+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.verify_file_reliability manual__2025-02-02T16:36:06.849533+00:00 [queued]>
+[2025-02-02T16:36:13.228+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-02-02T16:36:13.242+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): verify_file_reliability> on 2025-02-02 16:36:06.849533+00:00
+[2025-02-02T16:36:13.247+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=988) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-02T16:36:13.249+0000] {standard_task_runner.py:72} INFO - Started process 990 to run task
+[2025-02-02T16:36:13.249+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'directory_and_file_verification_dag', 'verify_file_reliability', 'manual__2025-02-02T16:36:06.849533+00:00', '--job-id', '260', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmpt09077d8']
+[2025-02-02T16:36:13.251+0000] {standard_task_runner.py:105} INFO - Job 260: Subtask verify_file_reliability
+[2025-02-02T16:36:13.484+0000] {task_command.py:467} INFO - Running <TaskInstance: directory_and_file_verification_dag.verify_file_reliability manual__2025-02-02T16:36:06.849533+00:00 [running]> on host 003b7fbea265
+[2025-02-02T16:36:13.553+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='directory_and_file_verification_dag' AIRFLOW_CTX_TASK_ID='verify_file_reliability' AIRFLOW_CTX_EXECUTION_DATE='2025-02-02T16:36:06.849533+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-02-02T16:36:06.849533+00:00'
+[2025-02-02T16:36:13.554+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-02T16:36:13.555+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-02T16:36:13.555+0000] {logging_mixin.py:190} INFO - Current task name:verify_file_reliability state:running start_date:2025-02-02 16:36:13.221003+00:00
+[2025-02-02T16:36:13.555+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag and current dag run status:running
+[2025-02-02T16:36:13.556+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-02T16:36:13.556+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-02T16:36:13.562+0000] {my_directory_and_file_checker.py:57} ERROR - ❌ Erreur d'encodage (utf-8) pour Écritures comptables article.csv: 'utf-8' codec can't decode byte 0xb0 in position 1: invalid start byte
+[2025-02-02T16:36:13.615+0000] {logging_mixin.py:190} INFO - 
+📂 Contenu du fichier (ISO-8859-1): Écritures comptables article.csv
+[2025-02-02T16:36:13.646+0000] {logging_mixin.py:190} INFO -   Date comptabilisation       N° lot  ... KOR par Réception KOR INPUT
+0            31/12/2024  A-BNDK 2304  ...             0,000     0,000
+1            31/12/2024  B-BNDK 2304  ...             0,000     0,000
+2            31/12/2024  C-BNDK 2304  ...             0,000     0,000
+3            31/12/2024  D-BNDK 2304  ...             0,000     0,000
+4            31/12/2024  E-BNDK 2304  ...             0,000     0,000
+
+[5 rows x 27 columns]
+[2025-02-02T16:36:13.647+0000] {logging_mixin.py:190} INFO - Boris200223 <class 'pandas.core.frame.DataFrame'>
+[2025-02-02T16:36:13.648+0000] {logging_mixin.py:190} INFO - jean64464 ['type document']
+[2025-02-02T16:36:13.648+0000] {logging_mixin.py:190} INFO - ❌ Erreur de fiabilité : Colonnes manquantes: type document
+[2025-02-02T16:36:13.649+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 274, in execute
+    return self.do_branch(context, super().execute(context))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/my_directory_and_file_checker.py", line 168, in verify_file_reliability
+    check_file_reliability(pdFile)
+  File "/opt/airflow/dags/my_directory_and_file_checker.py", line 136, in check_file_reliability
+    raise ValueError(f"Colonnes manquantes: {', '.join(missing_columns)}")
+ValueError: Colonnes manquantes: type document
+[2025-02-02T16:36:13.660+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2025-02-02T16:36:13.661+0000] {logging_mixin.py:190} INFO - Task start:2025-02-02 16:36:13.221003+00:00 end:2025-02-02 16:36:13.660488+00:00 duration:0.439485
+[2025-02-02T16:36:13.662+0000] {logging_mixin.py:190} INFO - Task:<Task(BranchPythonOperator): verify_file_reliability> dag:<DAG: directory_and_file_verification_dag> dagrun:<DagRun directory_and_file_verification_dag @ 2025-02-02 16:36:06.849533+00:00: manual__2025-02-02T16:36:06.849533+00:00, state:running, queued_at: 2025-02-02 16:36:06.858944+00:00. externally triggered: True>
+[2025-02-02T16:36:13.662+0000] {logging_mixin.py:190} INFO - Failure caused by Colonnes manquantes: type document
+[2025-02-02T16:36:13.663+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=directory_and_file_verification_dag, task_id=verify_file_reliability, run_id=manual__2025-02-02T16:36:06.849533+00:00, execution_date=20250202T163606, start_date=20250202T163613, end_date=20250202T163613
+[2025-02-02T16:36:13.672+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-02T16:36:13.673+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 260 for task verify_file_reliability (Colonnes manquantes: type document; 990)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 274, in execute
+    return self.do_branch(context, super().execute(context))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/my_directory_and_file_checker.py", line 168, in verify_file_reliability
+    check_file_reliability(pdFile)
+  File "/opt/airflow/dags/my_directory_and_file_checker.py", line 136, in check_file_reliability
+    raise ValueError(f"Colonnes manquantes: {', '.join(missing_columns)}")
+ValueError: Colonnes manquantes: type document
+[2025-02-02T16:36:13.706+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-02-02T16:36:13.851+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-02T16:36:13.856+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,45 @@
+[2025-02-10T19:20:08.504+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-10T19:20:08.528+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.verify_file_reliability scheduled__2025-02-10T19:19:00+00:00 [queued]>
+[2025-02-10T19:20:08.538+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.verify_file_reliability scheduled__2025-02-10T19:19:00+00:00 [queued]>
+[2025-02-10T19:20:08.539+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2025-02-10T19:20:08.553+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): verify_file_reliability> on 2025-02-10 19:19:00+00:00
+[2025-02-10T19:20:08.561+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=10275) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-10T19:20:08.562+0000] {standard_task_runner.py:72} INFO - Started process 10277 to run task
+[2025-02-10T19:20:08.563+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag', 'verify_file_reliability', 'scheduled__2025-02-10T19:19:00+00:00', '--job-id', '721', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmpuci5luis']
+[2025-02-10T19:20:08.565+0000] {standard_task_runner.py:105} INFO - Job 721: Subtask verify_file_reliability
+[2025-02-10T19:20:08.615+0000] {task_command.py:467} INFO - Running <TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.verify_file_reliability scheduled__2025-02-10T19:19:00+00:00 [running]> on host b6443be51f35
+[2025-02-10T19:20:08.999+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag' AIRFLOW_CTX_TASK_ID='verify_file_reliability' AIRFLOW_CTX_EXECUTION_DATE='2025-02-10T19:19:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-10T19:19:00+00:00'
+[2025-02-10T19:20:09.000+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-10T19:20:09.001+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-10T19:20:09.001+0000] {logging_mixin.py:190} INFO - Current task name:verify_file_reliability state:running start_date:2025-02-10 19:20:08.528899+00:00
+[2025-02-10T19:20:09.002+0000] {logging_mixin.py:190} INFO - Dag name:IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag and current dag run status:running
+[2025-02-10T19:20:09.002+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-10T19:20:09.003+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-10T19:20:09.004+0000] {logging_mixin.py:190} INFO - camarche22 /opt/***/files/in ['.csv'] ['utf-8', 'ISO-8859-1', 'Windows-1252']
+[2025-02-10T19:20:09.054+0000] {logging_mixin.py:190} INFO - 
+📂 Contenu du fichier (utf-8): Écritures comptables article (11).csv
+[2025-02-10T19:20:09.095+0000] {logging_mixin.py:190} INFO -   Date comptabilisation      N° lot  ... KOR par Réception KOR INPUT
+0            24/01/2025  26LABCDE24  ...                 0         0
+1            24/01/2025  26LABCDE24  ...                 0         0
+2            24/01/2025  26LABCDE24  ...                 0         0
+3            24/01/2025  26LABCDE24  ...                 0         0
+4            24/01/2025  26LABCDE24  ...                 0         0
+
+[5 rows x 27 columns]
+[2025-02-10T19:20:09.802+0000] {logging_mixin.py:190} INFO - Erreur Type de donnée invalide dans la colonne ' Ligne 0 : quantity_in_sac': 0 n'est pas du type <class 'str'>
+[2025-02-10T19:20:09.806+0000] {logging_mixin.py:190} INFO - Merde
+[2025-02-10T19:20:09.810+0000] {python.py:240} INFO - Done. Returned value was: end
+[2025-02-10T19:20:09.810+0000] {branch.py:38} INFO - Branch into end
+[2025-02-10T19:20:09.811+0000] {skipmixin.py:230} INFO - Following branch ('end',)
+[2025-02-10T19:20:09.825+0000] {skipmixin.py:278} INFO - Skipping tasks [('import_temp_ecc_to_ecc', -1)]
+[2025-02-10T19:20:09.862+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-10T19:20:09.863+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag, task_id=verify_file_reliability, run_id=scheduled__2025-02-10T19:19:00+00:00, execution_date=20250210T191900, start_date=20250210T192008, end_date=20250210T192009
+[2025-02-10T19:20:09.874+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-02-10T19:20:09.875+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-02-10T19:20:09.875+0000] {logging_mixin.py:190} INFO - Dag name:IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag queued_at:2025-02-10 19:20:00.419070+00:00
+[2025-02-10T19:20:09.876+0000] {logging_mixin.py:190} INFO - Task hostname:b6443be51f35 operator:BranchPythonOperator
+[2025-02-10T19:20:09.903+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-02-10T19:20:09.935+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-10T19:20:09.940+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,31 @@
+[2025-01-28T23:51:13.102+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-28T23:51:13.115+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: verifier_repertoire_dag.verifier_et_log_task manual__2025-01-28T23:51:11.244544+00:00 [queued]>
+[2025-01-28T23:51:13.125+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: verifier_repertoire_dag.verifier_et_log_task manual__2025-01-28T23:51:11.244544+00:00 [queued]>
+[2025-01-28T23:51:13.125+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2025-01-28T23:51:13.139+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): verifier_et_log_task> on 2025-01-28 23:51:11.244544+00:00
+[2025-01-28T23:51:13.145+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=255) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-01-28T23:51:13.146+0000] {standard_task_runner.py:72} INFO - Started process 257 to run task
+[2025-01-28T23:51:13.147+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'verifier_repertoire_dag', 'verifier_et_log_task', 'manual__2025-01-28T23:51:11.244544+00:00', '--job-id', '28', '--raw', '--subdir', 'DAGS_FOLDER/mydag_check_directory.py', '--cfg-path', '/tmp/tmp5gs7qjdp']
+[2025-01-28T23:51:13.148+0000] {standard_task_runner.py:105} INFO - Job 28: Subtask verifier_et_log_task
+[2025-01-28T23:51:13.189+0000] {task_command.py:467} INFO - Running <TaskInstance: verifier_repertoire_dag.verifier_et_log_task manual__2025-01-28T23:51:11.244544+00:00 [running]> on host f85a165ecee3
+[2025-01-28T23:51:13.408+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='verifier_repertoire_dag' AIRFLOW_CTX_TASK_ID='verifier_et_log_task' AIRFLOW_CTX_EXECUTION_DATE='2025-01-28T23:51:11.244544+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-28T23:51:11.244544+00:00'
+[2025-01-28T23:51:13.409+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-01-28T23:51:13.409+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-01-28T23:51:13.410+0000] {logging_mixin.py:190} INFO - Current task name:verifier_et_log_task state:running start_date:2025-01-28 23:51:13.116523+00:00
+[2025-01-28T23:51:13.411+0000] {logging_mixin.py:190} INFO - Dag name:verifier_repertoire_dag and current dag run status:running
+[2025-01-28T23:51:13.411+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-28T23:51:13.412+0000] {logging_mixin.py:190} INFO - [INFO] 2025-01-28 23:51:13.412680 - Vérification du répertoire : /opt/***/dags
+[2025-01-28T23:51:13.413+0000] {logging_mixin.py:190} INFO - opopopopop True
+[2025-01-28T23:51:13.415+0000] {logging_mixin.py:190} INFO - jhjhjhjh [INFO] 2025-01-28 23:51:13.415578 - Le répertoire '/opt/***/dags' existe.
+[2025-01-28T23:51:13.416+0000] {python.py:240} INFO - Done. Returned value was: True
+[2025-01-28T23:51:13.434+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-28T23:51:13.435+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=verifier_repertoire_dag, task_id=verifier_et_log_task, run_id=manual__2025-01-28T23:51:11.244544+00:00, execution_date=20250128T235111, start_date=20250128T235113, end_date=20250128T235113
+[2025-01-28T23:51:13.445+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-01-28T23:51:13.445+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-01-28T23:51:13.446+0000] {logging_mixin.py:190} INFO - Dag name:verifier_repertoire_dag queued_at:2025-01-28 23:51:11.259592+00:00
+[2025-01-28T23:51:13.447+0000] {logging_mixin.py:190} INFO - Task hostname:f85a165ecee3 operator:PythonOperator
+[2025-01-28T23:51:13.483+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-01-28T23:51:13.617+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-01-28T23:51:13.620+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,269 @@
+[2025-02-09T08:42:17.544+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-09T08:42:17.576+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.verify_file_reliability manual__2025-02-09T08:42:11.010818+00:00 [queued]>
+[2025-02-09T08:42:17.587+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.verify_file_reliability manual__2025-02-09T08:42:11.010818+00:00 [queued]>
+[2025-02-09T08:42:17.589+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-02-09T08:42:17.609+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): verify_file_reliability> on 2025-02-09 08:42:11.010818+00:00
+[2025-02-09T08:42:17.615+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=434) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-09T08:42:17.617+0000] {standard_task_runner.py:72} INFO - Started process 436 to run task
+[2025-02-09T08:42:17.618+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'directory_and_file_verification_dag', 'verify_file_reliability', 'manual__2025-02-09T08:42:11.010818+00:00', '--job-id', '1388', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmpze907d9z']
+[2025-02-09T08:42:17.619+0000] {standard_task_runner.py:105} INFO - Job 1388: Subtask verify_file_reliability
+[2025-02-09T08:42:17.678+0000] {task_command.py:467} INFO - Running <TaskInstance: directory_and_file_verification_dag.verify_file_reliability manual__2025-02-09T08:42:11.010818+00:00 [running]> on host 003b7fbea265
+[2025-02-09T08:42:17.954+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='directory_and_file_verification_dag' AIRFLOW_CTX_TASK_ID='verify_file_reliability' AIRFLOW_CTX_EXECUTION_DATE='2025-02-09T08:42:11.010818+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-02-09T08:42:11.010818+00:00'
+[2025-02-09T08:42:17.956+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-09T08:42:17.956+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-09T08:42:17.957+0000] {logging_mixin.py:190} INFO - Current task name:verify_file_reliability state:running start_date:2025-02-09 08:42:17.577290+00:00
+[2025-02-09T08:42:17.958+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag and current dag run status:running
+[2025-02-09T08:42:17.959+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-09T08:42:17.959+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-09T08:42:17.960+0000] {logging_mixin.py:190} INFO - camarche22 /opt/***/files ['.csv'] ['utf-8', 'ISO-8859-1', 'Windows-1252']
+[2025-02-09T08:42:17.986+0000] {my_directory_and_file_checker.py:112} ERROR - ❌ Erreur d'encodage (utf-8) pour Écritures.csv: 'utf-8' codec can't decode byte 0xb0 in position 1: invalid start byte
+[2025-02-09T08:42:18.006+0000] {logging_mixin.py:190} INFO - 
+📂 Contenu du fichier (ISO-8859-1): Écritures.csv
+[2025-02-09T08:42:18.013+0000] {logging_mixin.py:190} INFO -   Date comptabilisation       N° lot Type écriture
+0            31/12/2024  A-BNDK 2304    Production
+1            31/12/2024  B-BNDK 2304    Production
+2            31/12/2024  C-BNDK 2304    Production
+3            31/12/2024  D-BNDK 2304    Production
+4            31/12/2024  E-BNDK 2304    Production
+[2025-02-09T08:43:22.291+0000] {logging_mixin.py:190} INFO - ✅Lignes  ('✅ Le fichier respecte les colonnes attendues et les types de données.', True) 9854
+[2025-02-09T08:43:22.293+0000] {logging_mixin.py:190} INFO - merci
+[2025-02-09T08:43:22.309+0000] {base.py:84} INFO - Retrieving connection 'mysql_conn'
+[2025-02-09T08:43:22.333+0000] {logging_mixin.py:190} INFO - (('attendancedb',), ('caprostockdb',), ('information_schema',), ('mysql',), ('netvision_db',), ('performance_schema',), ('pointing_db',), ('posgpt_db',), ('pythondb',), ('sys',), ('testimportdb',))
+[2025-02-09T08:43:22.400+0000] {logging_mixin.py:190} INFO - ⚠️ Données supprimées avant insertion.
+[2025-02-09T08:43:23.418+0000] {sql.py:691} INFO - Loaded 1000 rows into temp_ecc so far
+[2025-02-09T08:43:24.539+0000] {sql.py:691} INFO - Loaded 2000 rows into temp_ecc so far
+[2025-02-09T08:43:25.389+0000] {sql.py:691} INFO - Loaded 3000 rows into temp_ecc so far
+[2025-02-09T08:43:26.219+0000] {sql.py:691} INFO - Loaded 4000 rows into temp_ecc so far
+[2025-02-09T08:43:27.532+0000] {sql.py:691} INFO - Loaded 5000 rows into temp_ecc so far
+[2025-02-09T08:43:28.620+0000] {sql.py:691} INFO - Loaded 6000 rows into temp_ecc so far
+[2025-02-09T08:43:29.480+0000] {sql.py:691} INFO - Loaded 7000 rows into temp_ecc so far
+[2025-02-09T08:43:30.280+0000] {sql.py:691} INFO - Loaded 8000 rows into temp_ecc so far
+[2025-02-09T08:43:31.128+0000] {sql.py:691} INFO - Loaded 9000 rows into temp_ecc so far
+[2025-02-09T08:43:31.802+0000] {sql.py:694} INFO - Done loading. Loaded a total of 9854 rows into temp_ecc
+[2025-02-09T08:43:31.804+0000] {logging_mixin.py:190} INFO - connexion sql reussie True
+[2025-02-09T08:43:31.813+0000] {logging_mixin.py:190} INFO - Afficher   Accounting_Date   Lot_Number Type_ecriture
+0      2024-12-31  A-BNDK 2304    Production
+1      2024-12-31  B-BNDK 2304    Production
+2      2024-12-31  C-BNDK 2304    Production
+3      2024-12-31  D-BNDK 2304    Production
+4      2024-12-31  E-BNDK 2304    Production
+[2025-02-09T08:43:31.814+0000] {python.py:240} INFO - Done. Returned value was: end
+[2025-02-09T08:43:31.815+0000] {branch.py:38} INFO - Branch into end
+[2025-02-09T08:43:31.816+0000] {skipmixin.py:230} INFO - Following branch ('end',)
+[2025-02-09T08:43:31.831+0000] {skipmixin.py:278} INFO - Skipping tasks []
+[2025-02-09T08:43:31.834+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 274, in execute
+    return self.do_branch(context, super().execute(context))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/branch.py", line 40, in do_branch
+    self.skip_all_except(context["ti"], branch_task_ids)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/skipmixin.py", line 189, in skip_all_except
+    SkipMixin._skip_all_except(ti=ti, branch_task_ids=branch_task_ids)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/skipmixin.py", line 280, in _skip_all_except
+    ti.xcom_push(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3639, in xcom_push
+    XCom.set(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/xcom.py", line 226, in set
+    raise ValueError(f"DAG run not found on DAG {dag_id!r} with ID {run_id!r}")
+ValueError: DAG run not found on DAG 'directory_and_file_verification_dag' with ID 'manual__2025-02-09T08:42:11.010818+00:00'
+[2025-02-09T08:43:31.849+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2025-02-09T08:43:31.850+0000] {logging_mixin.py:190} INFO - Task start:2025-02-09 08:42:17.577290+00:00 end:2025-02-09 08:43:31.849051+00:00 duration:74.271761
+[2025-02-09T08:43:31.851+0000] {logging_mixin.py:190} INFO - Task:<Task(BranchPythonOperator): verify_file_reliability> dag:<DAG: directory_and_file_verification_dag> dagrun:<DagRun directory_and_file_verification_dag @ 2025-02-09 08:42:11.010818+00:00: manual__2025-02-09T08:42:11.010818+00:00, state:running, queued_at: 2025-02-09 08:42:11.021942+00:00. externally triggered: True>
+[2025-02-09T08:43:31.851+0000] {logging_mixin.py:190} INFO - Failure caused by DAG run not found on DAG 'directory_and_file_verification_dag' with ID 'manual__2025-02-09T08:42:11.010818+00:00'
+[2025-02-09T08:43:31.852+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=directory_and_file_verification_dag, task_id=verify_file_reliability, run_id=manual__2025-02-09T08:42:11.010818+00:00, execution_date=20250209T084211, start_date=20250209T084217, end_date=20250209T084331
+[2025-02-09T08:43:31.872+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-09T08:43:31.874+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 1388 for task verify_file_reliability ((psycopg2.errors.ForeignKeyViolation) insert or update on table "task_fail" violates foreign key constraint "task_fail_ti_fkey"
+DETAIL:  Key (dag_id, task_id, run_id, map_index)=(directory_and_file_verification_dag, verify_file_reliability, manual__2025-02-09T08:42:11.010818+00:00, -1) is not present in table "task_instance".
+
+[SQL: INSERT INTO task_fail (task_id, dag_id, run_id, map_index, start_date, end_date, duration) VALUES (%(task_id)s, %(dag_id)s, %(run_id)s, %(map_index)s, %(start_date)s, %(end_date)s, %(duration)s) RETURNING task_fail.id]
+[parameters: {'task_id': 'verify_file_reliability', 'dag_id': 'directory_and_file_verification_dag', 'run_id': 'manual__2025-02-09T08:42:11.010818+00:00', 'map_index': -1, 'start_date': datetime.datetime(2025, 2, 9, 8, 42, 17, 577290, tzinfo=Timezone('UTC')), 'end_date': datetime.datetime(2025, 2, 9, 8, 43, 31, 849051, tzinfo=Timezone('UTC')), 'duration': 74}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj); 436)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 274, in execute
+    return self.do_branch(context, super().execute(context))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/branch.py", line 40, in do_branch
+    self.skip_all_except(context["ti"], branch_task_ids)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/skipmixin.py", line 189, in skip_all_except
+    SkipMixin._skip_all_except(ti=ti, branch_task_ids=branch_task_ids)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/skipmixin.py", line 280, in _skip_all_except
+    ti.xcom_push(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3639, in xcom_push
+    XCom.set(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/xcom.py", line 226, in set
+    raise ValueError(f"DAG run not found on DAG {dag_id!r} with ID {run_id!r}")
+ValueError: DAG run not found on DAG 'directory_and_file_verification_dag' with ID 'manual__2025-02-09T08:42:11.010818+00:00'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.ForeignKeyViolation: insert or update on table "task_fail" violates foreign key constraint "task_fail_ti_fkey"
+DETAIL:  Key (dag_id, task_id, run_id, map_index)=(directory_and_file_verification_dag, verify_file_reliability, manual__2025-02-09T08:42:11.010818+00:00, -1) is not present in table "task_instance".
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 336, in _run_raw_task
+    ti.handle_failure(e, test_mode, context, session=session)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3428, in handle_failure
+    _handle_failure(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 1243, in _handle_failure
+    TaskInstance.save_to_db(failure_context["ti"], session)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3400, in save_to_db
+    session.flush()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3449, in flush
+    self._flush(objects)
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3588, in _flush
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3549, in _flush
+    flush_context.execute()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
+    _emit_insert_statements(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1238, in _emit_insert_statements
+    result = connection._execute_20(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.ForeignKeyViolation) insert or update on table "task_fail" violates foreign key constraint "task_fail_ti_fkey"
+DETAIL:  Key (dag_id, task_id, run_id, map_index)=(directory_and_file_verification_dag, verify_file_reliability, manual__2025-02-09T08:42:11.010818+00:00, -1) is not present in table "task_instance".
+
+[SQL: INSERT INTO task_fail (task_id, dag_id, run_id, map_index, start_date, end_date, duration) VALUES (%(task_id)s, %(dag_id)s, %(run_id)s, %(map_index)s, %(start_date)s, %(end_date)s, %(duration)s) RETURNING task_fail.id]
+[parameters: {'task_id': 'verify_file_reliability', 'dag_id': 'directory_and_file_verification_dag', 'run_id': 'manual__2025-02-09T08:42:11.010818+00:00', 'map_index': -1, 'start_date': datetime.datetime(2025, 2, 9, 8, 42, 17, 577290, tzinfo=Timezone('UTC')), 'end_date': datetime.datetime(2025, 2, 9, 8, 43, 31, 849051, tzinfo=Timezone('UTC')), 'duration': 74}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+[2025-02-09T08:43:31.924+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-02-09T08:43:31.934+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

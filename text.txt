@@ -1,0 +1,22 @@
+,
+
+
+
+    ,
+    "Code magasin":EXPECTED_COLUMNS[9],"Code unité":EXPECTED_COLUMNS[10],"Créé par":EXPECTED_COLUMNS[11],
+    "Quantité":EXPECTED_COLUMNS[12],"Quantite en sac":EXPECTED_COLUMNS[13],"Quantité facturée":EXPECTED_COLUMNS[14],
+    "Quantité restante":EXPECTED_COLUMNS[15],"Quantité réservée":EXPECTED_COLUMNS[16],"Ecriture lettrage":EXPECTED_COLUMNS[17],
+    "Montant vente (réel)":EXPECTED_COLUMNS[18],"Coût total (réel)":EXPECTED_COLUMNS[19],"Coût total (non incorp.)":EXPECTED_COLUMNS[20],
+    "Ouvert":EXPECTED_COLUMNS[21],"Type de commande":EXPECTED_COLUMNS[22],"Créé à":EXPECTED_COLUMNS[23],
+    "N° séquence":EXPECTED_COLUMNS[24],"KOR par Réception":EXPECTED_COLUMNS[25],"KOR INPUT":EXPECTED_COLUMNS[26]
+
+
+
+
+
+    EXPECTED_COLUMNS[21]: int,EXPECTED_COLUMNS[22]:int,EXPECTED_COLUMNS[23]: int,
+    EXPECTED_COLUMNS[24]: str,EXPECTED_COLUMNS[25]: str
+
+
+    "Ouvert":EXPECTED_COLUMNS[23],"Type de commande":EXPECTED_COLUMNS[22],"Créé à":EXPECTED_COLUMNS[23],
+    "N° séquence":EXPECTED_COLUMNS[24],"KOR par Réception":EXPECTED_COLUMNS[25] #,"KOR INPUT":EXPECTED_COLUMNS[26]

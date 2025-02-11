@@ -1,0 +1,66 @@
+[2025-02-10T23:50:04.488+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-10T23:50:04.625+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.check_file_in_directory scheduled__2025-02-10T23:49:00+00:00 [queued]>
+[2025-02-10T23:50:04.636+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.check_file_in_directory scheduled__2025-02-10T23:49:00+00:00 [queued]>
+[2025-02-10T23:50:04.638+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2025-02-10T23:50:04.656+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): check_file_in_directory> on 2025-02-10 23:49:00+00:00
+[2025-02-10T23:50:04.662+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=2566) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-10T23:50:04.664+0000] {standard_task_runner.py:72} INFO - Started process 2568 to run task
+[2025-02-10T23:50:04.665+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag', 'check_file_in_directory', 'scheduled__2025-02-10T23:49:00+00:00', '--job-id', '1567', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmpidr387no']
+[2025-02-10T23:50:04.666+0000] {standard_task_runner.py:105} INFO - Job 1567: Subtask check_file_in_directory
+[2025-02-10T23:50:04.715+0000] {task_command.py:467} INFO - Running <TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.check_file_in_directory scheduled__2025-02-10T23:49:00+00:00 [running]> on host b6443be51f35
+[2025-02-10T23:50:04.807+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag' AIRFLOW_CTX_TASK_ID='check_file_in_directory' AIRFLOW_CTX_EXECUTION_DATE='2025-02-10T23:49:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-10T23:49:00+00:00'
+[2025-02-10T23:50:04.808+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-10T23:50:04.809+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-10T23:50:04.810+0000] {logging_mixin.py:190} INFO - Current task name:check_file_in_directory state:running start_date:2025-02-10 23:50:04.626635+00:00
+[2025-02-10T23:50:04.810+0000] {logging_mixin.py:190} INFO - Dag name:IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag and current dag run status:running
+[2025-02-10T23:50:04.811+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-10T23:50:04.812+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-10T23:50:04.813+0000] {logging_mixin.py:190} INFO - ca marche /opt/***/files/in ['.csv']
+[2025-02-10T23:50:04.816+0000] {python.py:240} INFO - Done. Returned value was: verify_file_reliability
+[2025-02-10T23:50:04.817+0000] {branch.py:38} INFO - Branch into verify_file_reliability
+[2025-02-10T23:50:04.817+0000] {skipmixin.py:230} INFO - Following branch ('verify_file_reliability',)
+[2025-02-10T23:50:04.828+0000] {skipmixin.py:278} INFO - Skipping tasks []
+[2025-02-10T23:50:04.856+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-10T23:50:04.857+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag, task_id=check_file_in_directory, run_id=scheduled__2025-02-10T23:49:00+00:00, execution_date=20250210T234900, start_date=20250210T235004, end_date=20250210T235004
+[2025-02-10T23:50:04.869+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-02-10T23:50:04.870+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-02-10T23:50:04.871+0000] {logging_mixin.py:190} INFO - Dag name:IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag queued_at:2025-02-10 23:50:00.381694+00:00
+[2025-02-10T23:50:04.871+0000] {logging_mixin.py:190} INFO - Task hostname:b6443be51f35 operator:BranchPythonOperator
+[2025-02-10T23:50:04.881+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-02-10T23:50:04.912+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-02-10T23:50:04.915+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-02-10T23:50:46.082+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-10T23:50:46.209+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.check_file_in_directory scheduled__2025-02-10T23:49:00+00:00 [queued]>
+[2025-02-10T23:50:46.217+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.check_file_in_directory scheduled__2025-02-10T23:49:00+00:00 [queued]>
+[2025-02-10T23:50:46.217+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2025-02-10T23:50:46.229+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): check_file_in_directory> on 2025-02-10 23:49:00+00:00
+[2025-02-10T23:50:46.234+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=2597) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-10T23:50:46.236+0000] {standard_task_runner.py:72} INFO - Started process 2599 to run task
+[2025-02-10T23:50:46.236+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag', 'check_file_in_directory', 'scheduled__2025-02-10T23:49:00+00:00', '--job-id', '1573', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmpq0yvru9e']
+[2025-02-10T23:50:46.237+0000] {standard_task_runner.py:105} INFO - Job 1573: Subtask check_file_in_directory
+[2025-02-10T23:50:46.277+0000] {task_command.py:467} INFO - Running <TaskInstance: IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag.check_file_in_directory scheduled__2025-02-10T23:49:00+00:00 [running]> on host b6443be51f35
+[2025-02-10T23:50:46.339+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag' AIRFLOW_CTX_TASK_ID='check_file_in_directory' AIRFLOW_CTX_EXECUTION_DATE='2025-02-10T23:49:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-10T23:49:00+00:00'
+[2025-02-10T23:50:46.340+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-10T23:50:46.340+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-10T23:50:46.341+0000] {logging_mixin.py:190} INFO - Current task name:check_file_in_directory state:running start_date:2025-02-10 23:50:46.210115+00:00
+[2025-02-10T23:50:46.341+0000] {logging_mixin.py:190} INFO - Dag name:IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag and current dag run status:running
+[2025-02-10T23:50:46.342+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-10T23:50:46.342+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-10T23:50:46.343+0000] {logging_mixin.py:190} INFO - ca marche /opt/***/files/in ['.csv']
+[2025-02-10T23:50:46.346+0000] {python.py:240} INFO - Done. Returned value was: verify_file_reliability
+[2025-02-10T23:50:46.346+0000] {branch.py:38} INFO - Branch into verify_file_reliability
+[2025-02-10T23:50:46.346+0000] {skipmixin.py:230} INFO - Following branch ('verify_file_reliability',)
+[2025-02-10T23:50:46.357+0000] {skipmixin.py:278} INFO - Skipping tasks []
+[2025-02-10T23:50:46.378+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-10T23:50:46.378+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag, task_id=check_file_in_directory, run_id=scheduled__2025-02-10T23:49:00+00:00, execution_date=20250210T234900, start_date=20250210T235046, end_date=20250210T235046
+[2025-02-10T23:50:46.385+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-02-10T23:50:46.386+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-02-10T23:50:46.386+0000] {logging_mixin.py:190} INFO - Dag name:IMPORTATION_ECRITURE_COMPTABLES_ARTICLE_dag queued_at:2025-02-10 23:50:42.876220+00:00
+[2025-02-10T23:50:46.387+0000] {logging_mixin.py:190} INFO - Task hostname:b6443be51f35 operator:BranchPythonOperator
+[2025-02-10T23:50:46.411+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-02-10T23:50:46.433+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-02-10T23:50:46.436+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

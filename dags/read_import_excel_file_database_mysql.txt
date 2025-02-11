@@ -1,0 +1,99 @@
+import os
+from airflow import DAG
+import pandas as pd
+from sqlalchemy import create_engine
+from datetime import datetime, timedelta
+from airflow.operators.python import PythonOperator
+
+def process_and_import_excel(log_file):
+    # Définir les paramètres de connexion
+    username = 'root'
+    password = 'root225'
+    host = 'localhost'
+    port = 3306
+    database = 'caprostockdb'
+    directory=r'C:/Users/HP/Documents/TextimportationPython/files'
+    table_name='caprostockdb'
+    # Construire l'URL de connexion
+    database_url = f"mysql+pymysql://{username}:{password}@{host}:{port}/{database}"
+
+    # Vérifie l'existence du répertoire
+    if not os.path.exists(directory):
+        with open(log_file, 'a') as log:
+            log.write(f"{datetime.now()} - Répertoire '{directory}' non trouvé.\n")
+            print('borisss',log_file)
+        return 
+    print('borisss2025',files)
+    # Liste tous les fichiers Excel dans le répertoire
+    files = [f for f in os.listdir(directory) if f.endswith('.xls') or f.endswith('.xlsx')]
+
+    if not files:
+        with open(log_file, 'a') as log:
+            log.write(f"{datetime.now()} - Aucun fichier Excel trouvé dans le répertoire '{directory}'.\n")
+        return
+
+    # Connexion à la base de données
+    try:
+        engine = create_engine(database_url)
+        connection = engine.connect()
+    except Exception as e:
+        with open(log_file, 'a') as log:
+            log.write(f"{datetime.now()} - Erreur de connexion à la base de données : {str(e)}\n")
+            print(log.read())
+        return
+
+    for file in files:
+        file_path = os.path.join(directory, file)
+        try:
+            # Lecture du fichier Excel
+            df = pd.read_excel(file_path)
+
+            # Vérifie les colonnes nécessaires
+            required_columns = ['DATE', 'TYPE_ECRITURE', 'QUANTITE']
+            if not all(col in df.columns for col in required_columns):
+                with open(log_file, 'a') as log:
+                    log.write(f"{datetime.now()} - Colonnes manquantes dans le fichier '{file}'.\n")
+                continue
+
+            # Supprime les lignes avec des valeurs nulles
+            df = df.dropna(subset=['DATE', 'TYPE_ECRITURE'])
+
+            # Remplace les valeurs nulles dans la colonne QUANTITE par 0
+            df['QUANTITE'] = df['QUANTITE'].fillna(0)
+
+            # Importation dans la table de la base de données
+            df.to_sql(table_name, con=engine, if_exists='append', index=False)
+            
+            # Log de succès
+            with open(log_file, 'a') as log:
+                log.write(f"{datetime.now()} - Données du fichier '{file}' importées avec succès dans la table '{table_name}'.\n")
+
+        except Exception as e:
+            # Log d'erreur
+            with open(log_file, 'a') as log:
+                log.write(f"{datetime.now()} - Erreur lors du traitement ou de l'importation du fichier '{file}': {str(e)}\n")
+
+    # Fermeture de la connexion à la base de données
+    connection.close()
+
+
+# Définir le DAG
+default_args = {
+    'owner': 'airflow',
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5),
+}
+
+with DAG(
+    dag_id='excel_to_mysql_stock_capro',
+    default_args=default_args,
+    start_date=datetime(2023, 1, 1),
+    schedule=timedelta(hours=30),  # Nouveau paramètre
+    tags=['boris', 'bahi'],  # Tags pour organiser vos DAGs
+    catchup=False,
+) as dag:
+
+    import_excel_task = PythonOperator(
+        task_id='excel_to_mysql_stock_capro',
+        python_callable=process_and_import_excel(log_file='log.txt')
+    )

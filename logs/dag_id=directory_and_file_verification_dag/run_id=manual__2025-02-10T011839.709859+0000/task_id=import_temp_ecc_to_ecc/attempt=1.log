@@ -1,0 +1,51 @@
+[2025-02-10T01:18:50.793+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-10T01:18:50.821+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.import_temp_ecc_to_ecc manual__2025-02-10T01:18:39.709859+00:00 [queued]>
+[2025-02-10T01:18:50.836+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.import_temp_ecc_to_ecc manual__2025-02-10T01:18:39.709859+00:00 [queued]>
+[2025-02-10T01:18:50.837+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-02-10T01:18:50.850+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): import_temp_ecc_to_ecc> on 2025-02-10 01:18:39.709859+00:00
+[2025-02-10T01:18:50.856+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1285) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-10T01:18:50.857+0000] {standard_task_runner.py:72} INFO - Started process 1287 to run task
+[2025-02-10T01:18:50.858+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'directory_and_file_verification_dag', 'import_temp_ecc_to_ecc', 'manual__2025-02-10T01:18:39.709859+00:00', '--job-id', '212', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmpc8rfirvx']
+[2025-02-10T01:18:50.859+0000] {standard_task_runner.py:105} INFO - Job 212: Subtask import_temp_ecc_to_ecc
+[2025-02-10T01:18:50.900+0000] {task_command.py:467} INFO - Running <TaskInstance: directory_and_file_verification_dag.import_temp_ecc_to_ecc manual__2025-02-10T01:18:39.709859+00:00 [running]> on host b6443be51f35
+[2025-02-10T01:18:51.140+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='directory_and_file_verification_dag' AIRFLOW_CTX_TASK_ID='import_temp_ecc_to_ecc' AIRFLOW_CTX_EXECUTION_DATE='2025-02-10T01:18:39.709859+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-02-10T01:18:39.709859+00:00'
+[2025-02-10T01:18:51.141+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-10T01:18:51.141+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-10T01:18:51.142+0000] {logging_mixin.py:190} INFO - Current task name:import_temp_ecc_to_ecc state:running start_date:2025-02-10 01:18:50.822524+00:00
+[2025-02-10T01:18:51.143+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag and current dag run status:running
+[2025-02-10T01:18:51.143+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-10T01:18:51.144+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-10T01:18:51.152+0000] {base.py:84} INFO - Retrieving connection 'mysql_conn'
+[2025-02-10T01:18:51.164+0000] {sql.py:553} INFO - Running statement:  SELECT * FROM temp_ecc; , parameters: None
+[2025-02-10T01:18:51.166+0000] {sql.py:562} INFO - Rows affected: 2
+[2025-02-10T01:18:51.167+0000] {logging_mixin.py:190} INFO - tyuyuy [('RPO00046015733', '2025-01-11', '16LABCDE24', 'Production', 'RPO000460', 15733), ('RPO00046015731', '2025-01-11', '16LABCDE24', 'Production', 'RPO000460', 15731)]
+[2025-02-10T01:18:51.168+0000] {logging_mixin.py:190} INFO - zezzezzere 
+        INSERT INTO ecc (id, accounting_date, lot_number, type_ecriture, document_number, sequence_number)
+        VALUES (RPO00046015733, 2025-01-11, 16LABCDE24, Production, RPO000460, 15733);
+        
+[2025-02-10T01:18:51.168+0000] {logging_mixin.py:190} INFO - trerettettejhjj ('RPO00046015733', '2025-01-11', '16LABCDE24', 'Production', 'RPO000460', 15733)
+[2025-02-10T01:18:51.169+0000] {logging_mixin.py:190} INFO - zezzezzere 
+        INSERT INTO ecc (id, accounting_date, lot_number, type_ecriture, document_number, sequence_number)
+        VALUES (RPO00046015731, 2025-01-11, 16LABCDE24, Production, RPO000460, 15731);
+        
+[2025-02-10T01:18:51.169+0000] {logging_mixin.py:190} INFO - trerettettejhjj ('RPO00046015733', '2025-01-11', '16LABCDE24', 'Production', 'RPO000460', 15733)
+[2025-02-10T01:18:51.174+0000] {sql.py:553} INFO - Running statement: 
+        INSERT INTO ecc (id, accounting_date, lot_number, type_ecriture, document_number, sequence_number)
+        VALUES (%s, %s, %s, %s, %s, %s);
+        , parameters: [('RPO00046015733', '2025-01-11', '16LABCDE24', 'Production', 'RPO000460', 15733), ('RPO00046015731', '2025-01-11', '16LABCDE24', 'Production', 'RPO000460', 15731)]
+[2025-02-10T01:18:51.175+0000] {logging_mixin.py:190} INFO - ❌ Erreur lors de l'importation des données : not enough arguments for format string
+[2025-02-10T01:18:51.176+0000] {python.py:240} INFO - Done. Returned value was: end
+[2025-02-10T01:18:51.176+0000] {branch.py:38} INFO - Branch into end
+[2025-02-10T01:18:51.177+0000] {skipmixin.py:230} INFO - Following branch ('end',)
+[2025-02-10T01:18:51.189+0000] {skipmixin.py:278} INFO - Skipping tasks []
+[2025-02-10T01:18:51.217+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-10T01:18:51.217+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=directory_and_file_verification_dag, task_id=import_temp_ecc_to_ecc, run_id=manual__2025-02-10T01:18:39.709859+00:00, execution_date=20250210T011839, start_date=20250210T011850, end_date=20250210T011851
+[2025-02-10T01:18:51.227+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-02-10T01:18:51.228+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-02-10T01:18:51.228+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag queued_at:2025-02-10 01:18:39.716574+00:00
+[2025-02-10T01:18:51.229+0000] {logging_mixin.py:190} INFO - Task hostname:b6443be51f35 operator:BranchPythonOperator
+[2025-02-10T01:18:51.274+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-02-10T01:18:51.296+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-10T01:18:51.298+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

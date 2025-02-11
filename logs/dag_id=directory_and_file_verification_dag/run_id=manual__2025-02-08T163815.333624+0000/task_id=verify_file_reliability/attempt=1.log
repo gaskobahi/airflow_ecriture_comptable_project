@@ -1,0 +1,152 @@
+[2025-02-08T16:38:23.999+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-08T16:38:24.020+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.verify_file_reliability manual__2025-02-08T16:38:15.333624+00:00 [queued]>
+[2025-02-08T16:38:24.030+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.verify_file_reliability manual__2025-02-08T16:38:15.333624+00:00 [queued]>
+[2025-02-08T16:38:24.031+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-02-08T16:38:24.044+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): verify_file_reliability> on 2025-02-08 16:38:15.333624+00:00
+[2025-02-08T16:38:24.051+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=4236) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-08T16:38:24.052+0000] {standard_task_runner.py:72} INFO - Started process 4238 to run task
+[2025-02-08T16:38:24.053+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'directory_and_file_verification_dag', 'verify_file_reliability', 'manual__2025-02-08T16:38:15.333624+00:00', '--job-id', '1299', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmp5p6qvhns']
+[2025-02-08T16:38:24.054+0000] {standard_task_runner.py:105} INFO - Job 1299: Subtask verify_file_reliability
+[2025-02-08T16:38:24.096+0000] {task_command.py:467} INFO - Running <TaskInstance: directory_and_file_verification_dag.verify_file_reliability manual__2025-02-08T16:38:15.333624+00:00 [running]> on host 003b7fbea265
+[2025-02-08T16:38:24.330+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='directory_and_file_verification_dag' AIRFLOW_CTX_TASK_ID='verify_file_reliability' AIRFLOW_CTX_EXECUTION_DATE='2025-02-08T16:38:15.333624+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-02-08T16:38:15.333624+00:00'
+[2025-02-08T16:38:24.331+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-08T16:38:24.331+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-08T16:38:24.332+0000] {logging_mixin.py:190} INFO - Current task name:verify_file_reliability state:running start_date:2025-02-08 16:38:24.021169+00:00
+[2025-02-08T16:38:24.333+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag and current dag run status:running
+[2025-02-08T16:38:24.333+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-08T16:38:24.334+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-08T16:38:24.335+0000] {logging_mixin.py:190} INFO - camarche22 /opt/***/files ['.csv'] ['utf-8', 'ISO-8859-1', 'Windows-1252']
+[2025-02-08T16:38:24.342+0000] {my_directory_and_file_checker.py:109} ERROR - ❌ Erreur d'encodage (utf-8) pour Écritures.csv: 'utf-8' codec can't decode byte 0xb0 in position 1: invalid start byte
+[2025-02-08T16:38:24.358+0000] {logging_mixin.py:190} INFO - 
+📂 Contenu du fichier (ISO-8859-1): Écritures.csv
+[2025-02-08T16:38:24.364+0000] {logging_mixin.py:190} INFO -   Date comptabilisation       N° lot Type écriture
+0            31/12/2024  A-BNDK 2304    Production
+1            31/12/2024  B-BNDK 2304    Production
+2            31/12/2024  C-BNDK 2304    Production
+3            31/12/2024  D-BNDK 2304    Production
+4            31/12/2024  E-BNDK 2304    Production
+[2025-02-08T16:38:24.365+0000] {logging_mixin.py:190} INFO - ttttttttt <class 'dict'>
+[2025-02-08T16:38:24.366+0000] {logging_mixin.py:190} INFO - ttttttttt2 {'Date comptabilisation': 'Accounting_Date', 'N° lot': 'Lot_Number', 'Type écriture': 'Type_ecriture'}
+[2025-02-08T16:38:24.366+0000] {logging_mixin.py:190} INFO - ttttttttt8 ['Accounting_Date', 'Lot_Number', 'Type_ecriture']
+[2025-02-08T16:38:24.367+0000] {logging_mixin.py:190} INFO - tttttttt78 Index(['Accounting_Date', 'Lot_Number', 'Type_ecriture'], dtype='object')
+[2025-02-08T16:38:24.368+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 274, in execute
+    return self.do_branch(context, super().execute(context))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/my_directory_and_file_checker.py", line 228, in verify_file_reliability
+    pdFile= read_file(file,file_path,encodings,expected_columns,renamed_columns)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/my_directory_and_file_checker.py", line 114, in read_file
+    return renamed_panda_csv_colonnes(result_read_file,expected_columns,renamed_columns)  # Renommer les colonnes si possible
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/my_directory_and_file_checker.py", line 60, in renamed_panda_csv_colonnes
+    missing_columns = expected_columns - set(pandasFile.columns)
+                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'list' and 'set'
+[2025-02-08T16:38:24.382+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2025-02-08T16:38:24.383+0000] {logging_mixin.py:190} INFO - Task start:2025-02-08 16:38:24.021169+00:00 end:2025-02-08 16:38:24.382010+00:00 duration:0.360841
+[2025-02-08T16:38:24.383+0000] {logging_mixin.py:190} INFO - Task:<Task(BranchPythonOperator): verify_file_reliability> dag:<DAG: directory_and_file_verification_dag> dagrun:<DagRun directory_and_file_verification_dag @ 2025-02-08 16:38:15.333624+00:00: manual__2025-02-08T16:38:15.333624+00:00, state:running, queued_at: 2025-02-08 16:38:15.346004+00:00. externally triggered: True>
+[2025-02-08T16:38:24.384+0000] {logging_mixin.py:190} INFO - Failure caused by unsupported operand type(s) for -: 'list' and 'set'
+[2025-02-08T16:38:24.384+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=directory_and_file_verification_dag, task_id=verify_file_reliability, run_id=manual__2025-02-08T16:38:15.333624+00:00, execution_date=20250208T163815, start_date=20250208T163824, end_date=20250208T163824
+[2025-02-08T16:38:24.396+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-08T16:38:24.397+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 1299 for task verify_file_reliability (unsupported operand type(s) for -: 'list' and 'set'; 4238)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 274, in execute
+    return self.do_branch(context, super().execute(context))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/my_directory_and_file_checker.py", line 228, in verify_file_reliability
+    pdFile= read_file(file,file_path,encodings,expected_columns,renamed_columns)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/my_directory_and_file_checker.py", line 114, in read_file
+    return renamed_panda_csv_colonnes(result_read_file,expected_columns,renamed_columns)  # Renommer les colonnes si possible
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/my_directory_and_file_checker.py", line 60, in renamed_panda_csv_colonnes
+    missing_columns = expected_columns - set(pandasFile.columns)
+                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'list' and 'set'
+[2025-02-08T16:38:24.427+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-02-08T16:38:24.451+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-08T16:38:24.456+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

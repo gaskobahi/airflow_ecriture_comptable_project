@@ -1,0 +1,29 @@
+[2025-01-26T22:56:12.692+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-26T22:56:12.717+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: excel_to_mysql_stock_capro.excel_to_mysql_stock_capro manual__2025-01-26T22:51:04.024828+00:00 [queued]>
+[2025-01-26T22:56:12.734+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: excel_to_mysql_stock_capro.excel_to_mysql_stock_capro manual__2025-01-26T22:51:04.024828+00:00 [queued]>
+[2025-01-26T22:56:12.735+0000] {taskinstance.py:2866} INFO - Starting attempt 2 of 2
+[2025-01-26T22:56:12.761+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): excel_to_mysql_stock_capro> on 2025-01-26 22:51:04.024828+00:00
+[2025-01-26T22:56:12.776+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=453) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-01-26T22:56:12.779+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'excel_to_mysql_stock_capro', 'excel_to_mysql_stock_capro', 'manual__2025-01-26T22:51:04.024828+00:00', '--job-id', '776', '--raw', '--subdir', 'DAGS_FOLDER/read_import_excel_file_database_mysql.py', '--cfg-path', '/tmp/tmpbzx77gsb']
+[2025-01-26T22:56:12.780+0000] {standard_task_runner.py:72} INFO - Started process 455 to run task
+[2025-01-26T22:56:12.781+0000] {standard_task_runner.py:105} INFO - Job 776: Subtask excel_to_mysql_stock_capro
+[2025-01-26T22:56:13.206+0000] {task_command.py:467} INFO - Running <TaskInstance: excel_to_mysql_stock_capro.excel_to_mysql_stock_capro manual__2025-01-26T22:51:04.024828+00:00 [running]> on host 340d747f4248
+[2025-01-26T22:56:13.390+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='excel_to_mysql_stock_capro' AIRFLOW_CTX_TASK_ID='excel_to_mysql_stock_capro' AIRFLOW_CTX_EXECUTION_DATE='2025-01-26T22:51:04.024828+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-26T22:51:04.024828+00:00'
+[2025-01-26T22:56:13.392+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-01-26T22:56:13.392+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-01-26T22:56:13.393+0000] {logging_mixin.py:190} INFO - Current task name:excel_to_mysql_stock_capro state:running start_date:2025-01-26 22:56:12.718521+00:00
+[2025-01-26T22:56:13.394+0000] {logging_mixin.py:190} INFO - Dag name:excel_to_mysql_stock_capro and current dag run status:running
+[2025-01-26T22:56:13.394+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-26T22:56:13.395+0000] {logging_mixin.py:190} INFO - borisss C:\\Users\\HP\\Documents\\TextimportationPython\\files\log.txt
+[2025-01-26T22:56:13.397+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-01-26T22:56:13.421+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-26T22:56:13.423+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=excel_to_mysql_stock_capro, task_id=excel_to_mysql_stock_capro, run_id=manual__2025-01-26T22:51:04.024828+00:00, execution_date=20250126T225104, start_date=20250126T225612, end_date=20250126T225613
+[2025-01-26T22:56:13.444+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-01-26T22:56:13.444+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-01-26T22:56:13.445+0000] {logging_mixin.py:190} INFO - Dag name:excel_to_mysql_stock_capro queued_at:2025-01-26 22:51:04.148079+00:00
+[2025-01-26T22:56:13.446+0000] {logging_mixin.py:190} INFO - Task hostname:340d747f4248 operator:PythonOperator
+[2025-01-26T22:56:13.481+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-01-26T22:56:13.739+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-01-26T22:56:13.742+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

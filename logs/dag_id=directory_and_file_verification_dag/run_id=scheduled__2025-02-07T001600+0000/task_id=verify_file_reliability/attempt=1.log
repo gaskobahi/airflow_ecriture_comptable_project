@@ -1,0 +1,55 @@
+[2025-02-07T22:27:50.599+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-07T22:27:51.097+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.verify_file_reliability scheduled__2025-02-07T00:16:00+00:00 [queued]>
+[2025-02-07T22:27:51.159+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.verify_file_reliability scheduled__2025-02-07T00:16:00+00:00 [queued]>
+[2025-02-07T22:27:51.176+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-02-07T22:27:51.651+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): verify_file_reliability> on 2025-02-07 00:16:00+00:00
+[2025-02-07T22:27:51.671+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=19392) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-07T22:27:51.677+0000] {standard_task_runner.py:72} INFO - Started process 19394 to run task
+[2025-02-07T22:27:51.693+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'directory_and_file_verification_dag', 'verify_file_reliability', 'scheduled__2025-02-07T00:16:00+00:00', '--job-id', '931', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmpag5r48_t']
+[2025-02-07T22:27:51.696+0000] {standard_task_runner.py:105} INFO - Job 931: Subtask verify_file_reliability
+[2025-02-07T22:27:51.868+0000] {task_command.py:467} INFO - Running <TaskInstance: directory_and_file_verification_dag.verify_file_reliability scheduled__2025-02-07T00:16:00+00:00 [running]> on host 003b7fbea265
+[2025-02-07T22:27:52.231+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='directory_and_file_verification_dag' AIRFLOW_CTX_TASK_ID='verify_file_reliability' AIRFLOW_CTX_EXECUTION_DATE='2025-02-07T00:16:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-07T00:16:00+00:00'
+[2025-02-07T22:27:52.235+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-07T22:27:52.243+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-07T22:27:52.249+0000] {logging_mixin.py:190} INFO - Current task name:verify_file_reliability state:running start_date:2025-02-07 22:27:51.113668+00:00
+[2025-02-07T22:27:52.251+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag and current dag run status:running
+[2025-02-07T22:27:52.253+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-07T22:27:52.257+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-07T22:27:52.353+0000] {my_directory_and_file_checker.py:122} ERROR - ❌ Erreur d'encodage (utf-8) pour Écritures.csv: 'utf-8' codec can't decode byte 0xb0 in position 1: invalid start byte
+[2025-02-07T22:27:52.435+0000] {logging_mixin.py:190} INFO - 
+📂 Contenu du fichier (ISO-8859-1): Écritures.csv
+[2025-02-07T22:27:52.464+0000] {logging_mixin.py:190} INFO -   Date comptabilisation       N° lot Type écriture
+0            31/12/2024  A-BNDK 2304    Production
+1            31/12/2024  B-BNDK 2304    Production
+2            31/12/2024  C-BNDK 2304    Production
+3            31/12/2024  D-BNDK 2304    Production
+4            31/12/2024  E-BNDK 2304    Production
+[2025-02-07T22:27:52.485+0000] {logging_mixin.py:190} INFO - borisPanda3 <class 'pandas.core.frame.DataFrame'>   Accounting_Date   Lot_Number Type_ecriture
+0      31/12/2024  A-BNDK 2304    Production
+1      31/12/2024  B-BNDK 2304    Production
+2      31/12/2024  C-BNDK 2304    Production
+3      31/12/2024  D-BNDK 2304    Production
+4      31/12/2024  E-BNDK 2304    Production
+[2025-02-07T22:28:13.096+0000] {job.py:229} INFO - Heartbeat recovered after 11.27 seconds
+[2025-02-07T22:28:18.270+0000] {job.py:229} INFO - Heartbeat recovered after 10.74 seconds
+[2025-02-07T22:32:12.786+0000] {logging_mixin.py:190} INFO - ✅Lignes  ('✅ Le fichier respecte les colonnes attendues et les types de données.', True) 9854
+[2025-02-07T22:32:12.806+0000] {logging_mixin.py:190} INFO - merci
+[2025-02-07T22:32:12.852+0000] {base.py:84} INFO - Retrieving connection 'mysql_conn'
+[2025-02-07T22:32:13.143+0000] {logging_mixin.py:190} INFO - (('attendancedb',), ('caprostockdb',), ('information_schema',), ('mysql',), ('netvision_db',), ('performance_schema',), ('pointing_db',), ('posgpt_db',), ('pythondb',), ('sys',), ('testimportdb',))
+[2025-02-07T22:33:03.273+0000] {logging_mixin.py:190} INFO - ❌ Erreur de connexion : (1205, 'Lock wait timeout exceeded; try restarting transaction')
+[2025-02-07T22:33:03.280+0000] {logging_mixin.py:190} INFO - connexion sql echoue
+[2025-02-07T22:33:03.287+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-02-07T22:33:03.295+0000] {branch.py:38} INFO - Branch into None
+[2025-02-07T22:33:03.315+0000] {skipmixin.py:230} INFO - Following branch ()
+[2025-02-07T22:33:03.396+0000] {skipmixin.py:278} INFO - Skipping tasks [('end', -1)]
+[2025-02-07T22:33:03.778+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-07T22:33:03.811+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=directory_and_file_verification_dag, task_id=verify_file_reliability, run_id=scheduled__2025-02-07T00:16:00+00:00, execution_date=20250207T001600, start_date=20250207T222751, end_date=20250207T223303
+[2025-02-07T22:33:04.165+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-02-07T22:33:04.183+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-02-07T22:33:04.189+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag queued_at:2025-02-07 22:26:31.650140+00:00
+[2025-02-07T22:33:04.196+0000] {logging_mixin.py:190} INFO - Task hostname:003b7fbea265 operator:BranchPythonOperator
+[2025-02-07T22:33:04.313+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-02-07T22:33:04.448+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-07T22:33:04.493+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

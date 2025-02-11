@@ -1,0 +1,43 @@
+[2025-02-02T13:01:43.649+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-02T13:01:43.674+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.read_files manual__2025-02-02T13:01:41.367011+00:00 [queued]>
+[2025-02-02T13:01:43.685+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.read_files manual__2025-02-02T13:01:41.367011+00:00 [queued]>
+[2025-02-02T13:01:43.686+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-02-02T13:01:43.704+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): read_files> on 2025-02-02 13:01:41.367011+00:00
+[2025-02-02T13:01:43.713+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=2053) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-02T13:01:43.717+0000] {standard_task_runner.py:72} INFO - Started process 2058 to run task
+[2025-02-02T13:01:43.718+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'directory_and_file_verification_dag', 'read_files', 'manual__2025-02-02T13:01:41.367011+00:00', '--job-id', '112', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmpqjg96n3g']
+[2025-02-02T13:01:43.720+0000] {standard_task_runner.py:105} INFO - Job 112: Subtask read_files
+[2025-02-02T13:01:43.793+0000] {task_command.py:467} INFO - Running <TaskInstance: directory_and_file_verification_dag.read_files manual__2025-02-02T13:01:41.367011+00:00 [running]> on host 003b7fbea265
+[2025-02-02T13:01:44.204+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='directory_and_file_verification_dag' AIRFLOW_CTX_TASK_ID='read_files' AIRFLOW_CTX_EXECUTION_DATE='2025-02-02T13:01:41.367011+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-02-02T13:01:41.367011+00:00'
+[2025-02-02T13:01:44.205+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-02T13:01:44.205+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-02T13:01:44.206+0000] {logging_mixin.py:190} INFO - Current task name:read_files state:running start_date:2025-02-02 13:01:43.675442+00:00
+[2025-02-02T13:01:44.206+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag and current dag run status:running
+[2025-02-02T13:01:44.207+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-02T13:01:44.207+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-02T13:01:44.216+0000] {my_directory_and_file_checker.py:68} ERROR - Erreur d'encodage pour le fichier Écritures comptables article.csv: 'utf-8' codec can't decode byte 0xb0 in position 1: invalid start byte
+[2025-02-02T13:01:44.284+0000] {my_directory_and_file_checker.py:71} ERROR - Erreur lors de la lecture du fichier Écritures comptables article.csv en ISO-8859-1: 'utf-8' codec can't decode byte 0xb0 in position 1: invalid start byte
+[2025-02-02T13:01:44.285+0000] {logging_mixin.py:190} INFO - 
+📂 Contenu du fichier: Écritures comptables article.csv
+[2025-02-02T13:01:44.315+0000] {logging_mixin.py:190} INFO -   Date comptabilisation       N° lot  ... KOR par Réception KOR INPUT
+0            31/12/2024  A-BNDK 2304  ...             0,000     0,000
+1            31/12/2024  B-BNDK 2304  ...             0,000     0,000
+2            31/12/2024  C-BNDK 2304  ...             0,000     0,000
+3            31/12/2024  D-BNDK 2304  ...             0,000     0,000
+4            31/12/2024  E-BNDK 2304  ...             0,000     0,000
+
+[5 rows x 27 columns]
+[2025-02-02T13:01:44.317+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-02-02T13:01:44.318+0000] {branch.py:38} INFO - Branch into None
+[2025-02-02T13:01:44.319+0000] {skipmixin.py:230} INFO - Following branch ()
+[2025-02-02T13:01:44.330+0000] {skipmixin.py:278} INFO - Skipping tasks [('end', -1)]
+[2025-02-02T13:01:44.351+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-02T13:01:44.352+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=directory_and_file_verification_dag, task_id=read_files, run_id=manual__2025-02-02T13:01:41.367011+00:00, execution_date=20250202T130141, start_date=20250202T130143, end_date=20250202T130144
+[2025-02-02T13:01:44.366+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-02-02T13:01:44.367+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-02-02T13:01:44.367+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag queued_at:2025-02-02 13:01:41.385226+00:00
+[2025-02-02T13:01:44.368+0000] {logging_mixin.py:190} INFO - Task hostname:003b7fbea265 operator:BranchPythonOperator
+[2025-02-02T13:01:44.416+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-02-02T13:01:44.427+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

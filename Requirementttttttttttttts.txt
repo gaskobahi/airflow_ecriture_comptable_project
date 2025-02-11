@@ -1,0 +1,80 @@
+Installation AirFLow to Docker
+    --pwd
+    --https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
+    --https://airflow.apache.org/docs/apache-airflow/stable/index.html
+    --docker --version
+    --docker-compose --version
+    --https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
+    --curl -k -LfO "https://airflow.apache.org/docs/apache-airflow/2.10.4/docker-compose.yaml"
+    --mkdir -p ./dags ./logs ./plugins ./config
+    --echo -e "AIRFLOW_UID=$(id -u)" > .env
+    --docker compose up airflow-init
+    --docker compose up
+    --docker compose up -d
+
+    http://127.0.0.1:8080/home
+    defaultuser: airflow 
+    password: airflow
+    docker-compose exec airflow-webserver bash
+
+    pip install apache-airflow[examples]
+    docker compose up airflow-init
+    
+    --ETAPE DE CREATION DE DAG 
+        create dag with bash operator!
+
+     rechercher lerreur dans le DAGS 
+        python ./dags/my_first_dag.py 
+
+docker compose down --volumes
+
+
+    #move_file_to_out(file_path,f"{DIRECTORY_PATH}/out")
+
+ON DUPLICATE KEY UPDATE
+        id = VALUES(id),
+        accounting_date = VALUES(accounting_date),
+        lot_number = VALUES(lot_number),
+        type_ecriture = VALUES(type_ecriture),
+        document_number = VALUES(document_number),
+        sequence_number = VALUES(sequence_number)
+
+
+
+def move_file_to_out(file_path, out_directory,statusMove:bool=True):
+    """Déplace le fichier traité vers le dossier OUT en ajoutant la date et l'heure au nom du fichier."""
+    try:
+        # Vérifier si le dossier OUT existe, sinon le créer
+        if not os.path.exists(out_directory):
+            os.makedirs(out_directory)
+
+        # Récupérer le nom du fichier et son extension
+        file_name, file_extension = os.path.splitext(os.path.basename(file_path))
+
+        # Obtenir la date et l'heure actuelles au format souhaité
+        current_datetime = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+        # Créer le nouveau nom de fichier en y ajoutant la date et l'heure
+        new_file_name = f"{file_name}_{current_datetime}{file_extension}"
+        if statusMove:
+            # Définir le chemin de destination
+            destination_path = os.path.join(f"{out_directory}/succes", new_file_name)
+        else:
+            destination_path = os.path.join(f"{out_directory}/error", new_file_name)
+
+
+        # Déplacer le fichier
+        shutil.move(file_path, destination_path)
+
+        # Message de succès
+        suc_message = f"✅ Fichier déplacé vers {destination_path}"
+        print(suc_message)
+        # Appeler la fonction log_message si elle est définie
+        log_message(LOG_DIR,SUCCESS_FILENAME, suc_message)
+
+    except Exception as e:
+        # Gérer les exceptions et afficher un message d'erreur
+        err_message = f"❌ Erreur lors du déplacement du fichier : {e}"
+        print(err_message)
+        log_message(LOG_DIR,ERROR_FILENAME, err_message)
+

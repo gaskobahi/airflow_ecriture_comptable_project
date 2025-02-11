@@ -1,0 +1,56 @@
+[2025-02-09T20:49:18.080+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-02-09T20:49:18.190+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.verify_file_reliability manual__2025-02-09T20:48:53.077922+00:00 [queued]>
+[2025-02-09T20:49:18.991+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: directory_and_file_verification_dag.verify_file_reliability manual__2025-02-09T20:48:53.077922+00:00 [queued]>
+[2025-02-09T20:49:18.994+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-02-09T20:49:19.095+0000] {taskinstance.py:2889} INFO - Executing <Task(BranchPythonOperator): verify_file_reliability> on 2025-02-09 20:48:53.077922+00:00
+[2025-02-09T20:49:19.168+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=2869) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-02-09T20:49:19.172+0000] {standard_task_runner.py:72} INFO - Started process 2871 to run task
+[2025-02-09T20:49:19.165+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'directory_and_file_verification_dag', 'verify_file_reliability', 'manual__2025-02-09T20:48:53.077922+00:00', '--job-id', '88', '--raw', '--subdir', 'DAGS_FOLDER/my_directory_and_file_checker.py', '--cfg-path', '/tmp/tmpcr883pj6']
+[2025-02-09T20:49:19.178+0000] {standard_task_runner.py:105} INFO - Job 88: Subtask verify_file_reliability
+[2025-02-09T20:49:19.387+0000] {task_command.py:467} INFO - Running <TaskInstance: directory_and_file_verification_dag.verify_file_reliability manual__2025-02-09T20:48:53.077922+00:00 [running]> on host b6443be51f35
+[2025-02-09T20:49:19.846+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='directory_and_file_verification_dag' AIRFLOW_CTX_TASK_ID='verify_file_reliability' AIRFLOW_CTX_EXECUTION_DATE='2025-02-09T20:48:53.077922+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-02-09T20:48:53.077922+00:00'
+[2025-02-09T20:49:19.858+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-02-09T20:49:19.866+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-02-09T20:49:19.867+0000] {logging_mixin.py:190} INFO - Current task name:verify_file_reliability state:running start_date:2025-02-09 20:49:18.192638+00:00
+[2025-02-09T20:49:19.869+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag and current dag run status:running
+[2025-02-09T20:49:19.871+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-02-09T20:49:19.873+0000] {baseoperator.py:421} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-02-09T20:49:19.887+0000] {logging_mixin.py:190} INFO - camarche22 /opt/***/files/in ['.csv'] ['utf-8', 'ISO-8859-1', 'Windows-1252']
+[2025-02-09T20:49:20.111+0000] {logging_mixin.py:190} INFO - 
+📂 Contenu du fichier (utf-8): Écritures comptables article.csv
+[2025-02-09T20:49:20.286+0000] {logging_mixin.py:190} INFO -   Date comptabilisation      N° lot Type écriture N° document  N° séquence
+0            16/12/2024         NaN         Vente   BL1900145        15735
+1            16/12/2024         NaN         Vente      107012        15734
+2            11/01/2025  16LABCDE24    Production   RPO000460        15733
+3            11/01/2025  16LABCDE24    Production   RPO000460        15732
+4            11/01/2025  16LABCDE24    Production   RPO000460        15731
+[2025-02-09T20:49:20.628+0000] {logging_mixin.py:190} INFO - gaston   accounting_date  ...                                                 id
+0      16/12/2024  ...  0        BL1900145\n1           107012\n2     ...
+1      16/12/2024  ...  0        BL1900145\n1           107012\n2     ...
+2      11/01/2025  ...  0        BL1900145\n1           107012\n2     ...
+3      11/01/2025  ...  0        BL1900145\n1           107012\n2     ...
+4      11/01/2025  ...  0        BL1900145\n1           107012\n2     ...
+
+[5 rows x 6 columns]
+[2025-02-09T20:49:26.846+0000] {logging_mixin.py:190} INFO - ✅Lignes  ('✅ Le fichier respecte les colonnes attendues et les types de données.', True) 10923
+[2025-02-09T20:49:26.873+0000] {logging_mixin.py:190} INFO - merci
+[2025-02-09T20:49:26.906+0000] {base.py:84} INFO - Retrieving connection 'mysql_conn'
+[2025-02-09T20:49:27.001+0000] {logging_mixin.py:190} INFO - (('attendancedb',), ('caprostockdb',), ('information_schema',), ('mysql',), ('netvision_db',), ('performance_schema',), ('pointing_db',), ('posgpt_db',), ('pythondb',), ('sys',), ('testimportdb',))
+[2025-02-09T20:49:27.219+0000] {logging_mixin.py:190} INFO - ⚠️ Données supprimées avant insertion.
+[2025-02-09T20:49:27.321+0000] {logging_mixin.py:190} INFO - ❌ Erreur de connexion : (1136, "Column count doesn't match value count at row 1")
+[2025-02-09T20:49:27.337+0000] {logging_mixin.py:190} INFO - connexion sql echoue
+[2025-02-09T20:49:27.525+0000] {logging_mixin.py:190} INFO - ❌ Erreur lors du déplacement du fichier : [Errno 13] Permission denied: '/opt/***/files/in/Écritures comptables article.csv'
+[2025-02-09T20:49:27.552+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-02-09T20:49:27.553+0000] {branch.py:38} INFO - Branch into None
+[2025-02-09T20:49:27.555+0000] {skipmixin.py:230} INFO - Following branch ()
+[2025-02-09T20:49:27.584+0000] {skipmixin.py:278} INFO - Skipping tasks [('end', -1)]
+[2025-02-09T20:49:27.667+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-02-09T20:49:27.668+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=directory_and_file_verification_dag, task_id=verify_file_reliability, run_id=manual__2025-02-09T20:48:53.077922+00:00, execution_date=20250209T204853, start_date=20250209T204918, end_date=20250209T204927
+[2025-02-09T20:49:27.702+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-02-09T20:49:27.704+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-02-09T20:49:27.705+0000] {logging_mixin.py:190} INFO - Dag name:directory_and_file_verification_dag queued_at:2025-02-09 20:48:53.099778+00:00
+[2025-02-09T20:49:27.706+0000] {logging_mixin.py:190} INFO - Task hostname:b6443be51f35 operator:BranchPythonOperator
+[2025-02-09T20:49:27.760+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-02-09T20:49:27.787+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
