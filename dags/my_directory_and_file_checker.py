@@ -77,8 +77,9 @@ OUT_DIR="out"
 #DATABASE_URL = "mysql+pymysql://root:root225@host.docker.internal:3306/testimportdb"
 
 os.makedirs(DIRECTORY_PATH, exist_ok=True)
-
-
+# Changer propriétaire si besoin
+#os.chmod(DIRECTORY_PATH, 0o777)
+"""
 def import_temp_ecc_to_ecc():
     log_message(LOG_DIR,SUCCESS_FILENAME, 'suc_message')
 
@@ -101,35 +102,94 @@ def import_temp_ecc_to_ecc():
             )
             for record in records
         ]
-        print ("toto1",data_to_insert)
+        #print ("toto1",data_to_insert)
 
 
         delete_query = f" DELETE FROM {TABLE_ECC} WHERE id IN (%s) " % ", ".join(["%s"] * len(data_to_insert))
 
         mysql_hook.run(delete_query, parameters=[row[0] for row in data_to_insert])  # Supprime les anciens enregistrements
-        print("data_to_insert",data_to_insert)
+        #print("data_to_insert",data_to_insert)
         # Insère les nouvelles données
         mysql_hook.insert_rows(
             table=TABLE_ECC,
             rows=data_to_insert,
             #target_fields=["id", "accounting_date", "lot_number", "type_ecriture", "document_number", "sequence_number"]
             target_fields=["id",
-                EXPECTED_COLUMNS[0],EXPECTED_COLUMNS[1], EXPECTED_COLUMNS[2],
-                EXPECTED_COLUMNS[3],EXPECTED_COLUMNS[4], EXPECTED_COLUMNS[5],
-                EXPECTED_COLUMNS[6],EXPECTED_COLUMNS[7],EXPECTED_COLUMNS[8],
-                EXPECTED_COLUMNS[9],EXPECTED_COLUMNS[10],EXPECTED_COLUMNS[11],
-                EXPECTED_COLUMNS[12],EXPECTED_COLUMNS[13],EXPECTED_COLUMNS[14],
-                EXPECTED_COLUMNS[15],EXPECTED_COLUMNS[16],EXPECTED_COLUMNS[17],
-                EXPECTED_COLUMNS[18],EXPECTED_COLUMNS[19],EXPECTED_COLUMNS[20],
-                EXPECTED_COLUMNS[21],EXPECTED_COLUMNS[22],EXPECTED_COLUMNS[23],
-                EXPECTED_COLUMNS[24],EXPECTED_COLUMNS[25],EXPECTED_COLUMNS[26],
+            EXPECTED_COLUMNS[0],EXPECTED_COLUMNS[1], EXPECTED_COLUMNS[2],
+            EXPECTED_COLUMNS[3],EXPECTED_COLUMNS[4], EXPECTED_COLUMNS[5],
+            EXPECTED_COLUMNS[6],EXPECTED_COLUMNS[7],EXPECTED_COLUMNS[8],
+            EXPECTED_COLUMNS[9],EXPECTED_COLUMNS[10],EXPECTED_COLUMNS[11],
+            EXPECTED_COLUMNS[12],EXPECTED_COLUMNS[13],EXPECTED_COLUMNS[14],
+            EXPECTED_COLUMNS[15],EXPECTED_COLUMNS[16],EXPECTED_COLUMNS[17],
+            EXPECTED_COLUMNS[18],EXPECTED_COLUMNS[19],EXPECTED_COLUMNS[20],
+            EXPECTED_COLUMNS[21],EXPECTED_COLUMNS[22],EXPECTED_COLUMNS[23],
+            EXPECTED_COLUMNS[24],EXPECTED_COLUMNS[25],EXPECTED_COLUMNS[26],
             ]
         )
         return 'end'
     except Exception as e:
         print(f"❌ Erreur  lors de l'importation des données Temp_to_ECC : {e}")
-        
 
+"""
+
+def import_temp_ecc_to_ecc():
+    """
+    Importe les données de la table temporaire TEMP_ECC vers la table ECC.
+    Supprime les anciennes entrées et insère les nouvelles.
+    """
+    log_message(LOG_DIR, SUCCESS_FILENAME, "Début de l'importation des données")
+    
+    try:
+        mysql_hook = MySqlHook(mysql_conn_id=MYSQL_CONNEXION)
+        select_query = f"SELECT * FROM {TABLE_TEMP_ECC};"
+        records = mysql_hook.get_records(select_query)
+        if not records:
+            log_message(LOG_DIR, ERROR_FILENAME, "Aucune donnée trouvée dans TEMP_ECC")
+            return 'end'
+        
+        # Préparer les données pour l'insertion
+        data_to_insert = []
+        for record in records:
+            try:
+                id_value = f"{record[4]}{record[24]}"  # Concaténer `N° sequence` et `N°document`
+                formatted_record = (
+                    id_value,
+                    record[0].strftime('%Y-%m-%d') if isinstance(record[0], datetime) else record[0],
+                    *record[1:23],
+                    record[23].strftime('%Y-%m-%d %H:%M') if isinstance(record[23], datetime) else record[23],
+                    *record[24:]
+                )
+                data_to_insert.append(formatted_record)
+            except IndexError as e:
+                log_message(LOG_DIR, ERROR_FILENAME, f"Erreur d'indexation des données : {e}")
+                return 'end'
+
+        # Supprimer les anciennes entrées dans TABLE_ECC
+        #delete_query = f"DELETE FROM {TABLE_ECC} WHERE id IN (%s)"
+        delete_query = f" DELETE FROM {TABLE_ECC} WHERE id IN (%s) " % ", ".join(["%s"] * len(data_to_insert))
+        print('oioioioi',delete_query)
+        try:
+            mysql_hook.run(delete_query, parameters=[row[0] for row in data_to_insert])
+        except Exception as e:
+            log_message(LOG_DIR, ERROR_FILENAME, f"Erreur lors de la suppression des données : {e}")
+            return 'end'
+        
+        # Insérer les nouvelles données
+        try:
+            mysql_hook.insert_rows(
+                table=TABLE_ECC,
+                rows=data_to_insert,
+                target_fields=["id"] + EXPECTED_COLUMNS  # Assurez-vous que les colonnes correspondent
+            )
+            log_message(LOG_DIR, SUCCESS_FILENAME, "Importation réussie vers ECC")
+            return 'end'
+        except Exception as e:
+            log_message(LOG_DIR, ERROR_FILENAME, f"Erreur lors de l'insertion des données : {e}")
+            return 'end'
+        
+    except Exception as e:
+        log_message(LOG_DIR, ERROR_FILENAME, f"Erreur globale d'importation : {e}")
+        return 'end'
 
 
 def move_file_to_out(file_path, out_directory,statusMove:bool=True):
@@ -225,7 +285,7 @@ def read_file(file,file_path,encodings,expected_columns,renamed_columns)->pd:
             logging.error(err_message)
             log_message(LOG_DIR,ERROR_FILENAME, err_message)
         except Exception as e:
-            err_message=f"⚠️ Erreur lors de la lecture de {file} avec {encoding}: {e}"
+            err_message=f"⚠️ Erreur lors de la lecture de2 {file} avec {encoding}: {e}"
             logging.error(err_message)
             log_message(LOG_DIR,ERROR_FILENAME, err_message)
             break  # Ne pas tester d'autres encodages si une autre erreur survient
@@ -250,42 +310,20 @@ def test_sql_connection(pdfile,temp_table)->any:
 
         # Conversion des dates si présentes
         if "accounting_date" in pdfile.columns:
-            pdfile["accounting_date"] = pd.to_datetime(pdfile["accounting_date"], format="%d/%m/%Y").dt.strftime("%Y-%m-%d")
+            pdfile['accounting_date'] = pd.to_datetime(pdfile['accounting_date'], format='mixed', dayfirst=True).dt.strftime("%Y-%m-%d")
+             # ✅ Pandas détecte automatiquement le format
+
+            #datetime.strptime(pdfile["accounting_date"],"%d/%m/%Y").dt.strftime("%Y-%m-%d")
 
         if "created_at" in pdfile.columns:
-            pdfile["created_at"] = pd.to_datetime(pdfile["created_at"], format="%d/%m/%Y %H:%M").dt.strftime("%Y-%m-%d %H:%M")
+            pdfile["created_at"] = pd.to_datetime(pdfile["created_at"],  format='mixed', dayfirst=True).dt.strftime("%Y-%m-%d %H:%M:%S")
 
-        # Vérification et conversion de quantity
-        """
-        if "quantity" in pdfile.columns:
-            pdfile["quantity"] = pdfile["quantity"].astype(str).str.replace(",", ".").astype(float)
-
-        if "remaining_quantity" in pdfile.columns:
-            pdfile["remaining_quantity"] = pdfile["remaining_quantity"].astype(str).str.replace(",", ".").astype(float)
-
-        if "quantity_reserved" in pdfile.columns:
-            pdfile["quantity_reserved"] = pdfile["quantity_reserved"].astype(str).str.replace(",", ".").astype(float)
-
-        if "lettering_writing" in pdfile.columns:
-            pdfile["lettering_writing"] = pdfile["lettering_writing"].astype(str).str.replace(",", ".").astype(float)
-
-        if "sales_amount_actual" in pdfile.columns:
-            pdfile["sales_amount_actual"] = pdfile["sales_amount_actual"].astype(str).str.replace(",", ".").astype(float)
-
-        if "total_cost_actual" in pdfile.columns:
-            pdfile["total_cost_actual"] = pdfile["total_cost_actual"].astype(str).str.replace(",", ".").astype(float)
-
-        if "total_cost_not_included" in pdfile.columns:
-            pdfile["total_cost_not_included"] = pdfile["total_cost_not_included"].astype(str).str.replace(",", ".").astype(float)
-
-        if "kor_by_reception" in pdfile.columns:
-            pdfile["kor_by_reception"] = pdfile["kor_by_reception"].astype(str).str.replace(",", ".").astype(float)
-
-        if "kor_input" in pdfile.columns:
-            pdfile["kor_input"] = pdfile["kor_input"].astype(str).str.replace(",", ".").astype(float)
-        """
+        print('trtrtrtrtrtr',pdfile["accounting_date"])
+       
         # Remplacement des NaN par ''
         pdfile = pdfile.where(pdfile.notna(), '')
+        #éliminer les espaces dans tout ton DataFrame
+        pdfile = pdfile.applymap(lambda x: x.strip() if isinstance(x, str) else x)
 
         print("⚠️ Données avant insertion :", pdfile.dtypes)
         print("Aperçu des données :", pdfile.head())
@@ -295,16 +333,17 @@ def test_sql_connection(pdfile,temp_table)->any:
         cursor.execute(delete_query)
         conn.commit()
         print("⚠️ Données supprimées avant insertion.")
+        print("azzezeze",pdfile.itertuples)
 
         # Conversion en tuples pour l'insertion
         rows_to_insert = [tuple(row) for row in pdfile.itertuples(index=False)]
-        #print('📌 Données à insérer :', rows_to_insert)
+        print('📌 Données à insérer 205225:', rows_to_insert)
 
         # Insertion des données
         mysql_hook.insert_rows(table=temp_table, rows=rows_to_insert)
         msg="✅ Insertion réussie ecc !"
         print(msg)
-        log_message(LOG_DIR, ERROR_FILENAME, msg)
+        log_message(LOG_DIR, SUCCESS_FILENAME, msg)
         return msg
 
     except Exception as e:
@@ -332,11 +371,11 @@ def check_file_reliability_from_pandas(pdf:pd,expected_columns:any,column_types:
                     try:
                         # Vérification Date
                         if expected_type == date:
-                            value = pd.to_datetime(value, format="%d/%m/%Y").date()  
+                            value = pd.to_datetime(value, format='mixed',dayfirst=True).date()  
 
                         # Vérification DateTime
                         elif expected_type == datetime:
-                            value = pd.to_datetime(value, format="%d/%m/%Y %H:%M")  
+                            value = pd.to_datetime(value, format='mixed',dayfirst=True)  
 
                         # Vérification Integer
                         elif expected_type == int:
@@ -396,7 +435,6 @@ def check_file_reliability_from_pandas(pdf:pd,expected_columns:any,column_types:
 
 # Définir la tâche de vérification de fiabilité du fichier
 def verify_file_reliability(directory_path,allow_types,encodings,expected_columns,column_types,renamed_columns):
-    print('camarche22',directory_path,allow_types,encodings,column_types,renamed_columns)
     files = [f for f in os.listdir(directory_path) if os.path.splitext(f)[1] in allow_types]
     for file in files:
         file_path = os.path.join(directory_path, file)
