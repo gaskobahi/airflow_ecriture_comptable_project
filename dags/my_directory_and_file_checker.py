@@ -78,59 +78,6 @@ OUT_DIR="out"
 
 os.makedirs(DIRECTORY_PATH, exist_ok=True)
 # Changer propriétaire si besoin
-#os.chmod(DIRECTORY_PATH, 0o777)
-"""
-def import_temp_ecc_to_ecc():
-    log_message(LOG_DIR,SUCCESS_FILENAME, 'suc_message')
-
-    try:
-        # Initialiser le hook MySQL
-        mysql_hook = MySqlHook(mysql_conn_id=MYSQL_CONNEXION)
-        select_query = f" SELECT * FROM {TABLE_TEMP_ECC};"
-        records = mysql_hook.get_records(select_query)
-          # Préparer les données pour l'insertion ou la mise à jour
-        data_to_insert = [
-            (
-                f"{record[3]}{record[4]}",  # Concaténer `N° sequence` et `N°document` pour créer `id`
-                f"{record[0].strftime('%Y-%m-%d')}", f"{record[1]}",f"{record[2]}",
-                f"{record[3]}",f"{record[4]}",f"{record[5]}",f"{record[6]}",
-                f"{record[7]}",f"{record[8]}",f"{record[9]}",f"{record[10]}",
-                f"{record[11]}",f"{record[12]}",f"{record[13]}",f"{record[14]}",
-                f"{record[15]}",f"{record[16]}",f"{record[17]}",f"{record[18]}",
-                f"{record[19]}",f"{record[20]}",f"{record[21]}",f"{record[22]}",
-                f"{record[23].strftime('%Y-%m-%d %H:%M')}",f"{record[24]}",f"{record[25]}",f"{record[26]}",
-            )
-            for record in records
-        ]
-        #print ("toto1",data_to_insert)
-
-
-        delete_query = f" DELETE FROM {TABLE_ECC} WHERE id IN (%s) " % ", ".join(["%s"] * len(data_to_insert))
-
-        mysql_hook.run(delete_query, parameters=[row[0] for row in data_to_insert])  # Supprime les anciens enregistrements
-        #print("data_to_insert",data_to_insert)
-        # Insère les nouvelles données
-        mysql_hook.insert_rows(
-            table=TABLE_ECC,
-            rows=data_to_insert,
-            #target_fields=["id", "accounting_date", "lot_number", "type_ecriture", "document_number", "sequence_number"]
-            target_fields=["id",
-            EXPECTED_COLUMNS[0],EXPECTED_COLUMNS[1], EXPECTED_COLUMNS[2],
-            EXPECTED_COLUMNS[3],EXPECTED_COLUMNS[4], EXPECTED_COLUMNS[5],
-            EXPECTED_COLUMNS[6],EXPECTED_COLUMNS[7],EXPECTED_COLUMNS[8],
-            EXPECTED_COLUMNS[9],EXPECTED_COLUMNS[10],EXPECTED_COLUMNS[11],
-            EXPECTED_COLUMNS[12],EXPECTED_COLUMNS[13],EXPECTED_COLUMNS[14],
-            EXPECTED_COLUMNS[15],EXPECTED_COLUMNS[16],EXPECTED_COLUMNS[17],
-            EXPECTED_COLUMNS[18],EXPECTED_COLUMNS[19],EXPECTED_COLUMNS[20],
-            EXPECTED_COLUMNS[21],EXPECTED_COLUMNS[22],EXPECTED_COLUMNS[23],
-            EXPECTED_COLUMNS[24],EXPECTED_COLUMNS[25],EXPECTED_COLUMNS[26],
-            ]
-        )
-        return 'end'
-    except Exception as e:
-        print(f"❌ Erreur  lors de l'importation des données Temp_to_ECC : {e}")
-
-"""
 
 def import_temp_ecc_to_ecc():
     """
@@ -167,7 +114,7 @@ def import_temp_ecc_to_ecc():
         # Supprimer les anciennes entrées dans TABLE_ECC
         #delete_query = f"DELETE FROM {TABLE_ECC} WHERE id IN (%s)"
         delete_query = f" DELETE FROM {TABLE_ECC} WHERE id IN (%s) " % ", ".join(["%s"] * len(data_to_insert))
-        print('oioioioi',delete_query)
+        #print('oioioioi',delete_query)
         try:
             mysql_hook.run(delete_query, parameters=[row[0] for row in data_to_insert])
         except Exception as e:
@@ -252,7 +199,31 @@ def log_message(fpath,filename, message):
         log_file.write(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} - {message}\n")
 
 
+def check_directory(directory_path: str) -> str:
+    """
+    Vérifie si un répertoire existe et retourne la prochaine action.
+
+    :param directory_path: Chemin du répertoire à vérifier.
+    :return: "check_file_in_directory" si le répertoire existe, sinon "end".
+    """
+    if not directory_path:
+        err_message = "⚠️ Le chemin du répertoire est vide ou non défini."
+        logging.error(err_message)
+        log_message(LOG_DIR, ERROR_FILENAME, err_message)
+        return "end"
+
+    if os.path.isdir(directory_path):
+        print(f"📁 Répertoire trouvé : {directory_path}")
+        return "check_file_in_directory"
+    else:
+        err_message = f"❌ Répertoire introuvable : {directory_path}"
+        logging.error(err_message)
+        log_message(LOG_DIR, ERROR_FILENAME, err_message)
+        return "end"
+
+        
 # Fonction pour vérifier l'existence du répertoire
+"""
 def check_directory(directory_path):
     if os.path.isdir(directory_path):
         return "check_file_in_directory"
@@ -294,7 +265,77 @@ def read_file(file,file_path,encodings,expected_columns,renamed_columns)->pd:
         return rn 
     else:
         return None  # Retourne None si aucun encodage ne fonctionne
+"""
 
+def check_file_in_directory(directory_path: str, allow_types: list[str]) -> str:
+    """
+    Vérifie si un fichier avec une extension autorisée est présent dans un répertoire.
+
+    :param directory_path: Chemin du répertoire à vérifier.
+    :param allow_types: Liste des extensions autorisées (ex: ['.csv', '.txt']).
+    :return: "verify_file_reliability" si un fichier valide est trouvé, sinon "end".
+    """
+    if not os.path.isdir(directory_path):
+        err_message = f"❌ Le répertoire {directory_path} n'existe pas ou est inaccessible."
+        logging.error(err_message)
+        log_message(LOG_DIR, ERROR_FILENAME, err_message)
+        return "end"
+
+    print("🔍 Vérification du répertoire:", directory_path)
+    
+    # Normalisation des extensions (en minuscules)
+    allow_types = [ext.lower() for ext in allow_types]
+
+    # Liste des fichiers correspondant aux extensions autorisées
+    files = [f for f in os.listdir(directory_path) if os.path.splitext(f)[1].lower() in allow_types]
+
+    if files:
+        print(f"📂 Fichiers trouvés: {files}")
+        return "verify_file_reliability"
+    else:
+        err_message = "⚠️ Aucun fichier valide trouvé dans le répertoire."
+        logging.warning(err_message)
+        log_message(LOG_DIR, ERROR_FILENAME, err_message)
+        return "end"
+
+def read_file(
+    file: str, 
+    file_path: str, 
+    encodings: list[str], 
+    expected_columns: dict, 
+    renamed_columns: dict
+) -> pd.DataFrame | None:
+    """
+    Tente de lire un fichier CSV avec différents encodages et renomme les colonnes.
+
+    :param file: Nom du fichier
+    :param file_path: Chemin du fichier
+    :param encodings: Liste des encodages à tester
+    :param expected_columns: Colonnes attendues pour le fichier
+    :param renamed_columns: Colonnes à renommer
+    :return: Un DataFrame pandas si la lecture réussit, sinon None
+    """
+    for encoding in encodings:
+        try:
+            df = pd.read_csv(file_path, encoding=encoding, delimiter=";")
+            df.replace("", pd.NA, inplace=True)  # Remplace les cellules vides par NaN
+            df.dropna(how="all", inplace=True)  # Supprime les lignes totalement vides
+            print(f"\n📂 Contenu du fichier ({encoding}) : {file}")
+            print(df.head())
+
+            # Renommer les colonnes si nécessaire
+            return renamed_panda_colonnes(df, expected_columns, renamed_columns)
+
+        except UnicodeDecodeError:
+            err_message = f"❌ Erreur d'encodage ({encoding}) pour {file}"
+        except Exception as e:
+            err_message = f"⚠️ Erreur lors de la lecture de {file} avec {encoding}: {e}"
+            break  # Stopper la tentative si une autre erreur survient
+
+        logging.error(err_message)
+        log_message(LOG_DIR, ERROR_FILENAME, err_message)
+
+    return None  # Retourne None si aucun encodage ne fonctionne
 # Paramètres de connexion MySQL (à adapter)
 
 def test_sql_connection(pdfile,temp_table)->any:
@@ -440,6 +481,9 @@ def verify_file_reliability(directory_path,allow_types,encodings,expected_column
         file_path = os.path.join(directory_path, file)
         pdFile= read_file(file,file_path,encodings,expected_columns,renamed_columns)
         if pdFile is not None:
+            # 🔹 Supprimer les lignes où NUMERO_SEQUENCE == 0
+            if pdFile.columns[24] in pdFile.columns:
+                pdFile = pdFile[pdFile[pdFile.columns[24]] != 0]
             # ✅ Remplacer `NaN` par `None`
             if check_file_reliability_from_pandas(pdFile,expected_columns,column_types):
                 print('merci')
